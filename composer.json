@@ -1,0 +1,56 @@
+{
+    "name": "alamirault/fftt-api-src",
+    "description": "SDK afin de consommer l'api FFTT",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Antoine Lamirault",
+            "email": "lamiraultantoine@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Alamirault\\FFTTApi\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Alamirault\\FFTTApi\\Tests\\": "tests"
+        }
+    },
+    "require": {
+        "php": "^8.1",
+        "ext-simplexml": "*",
+        "ext-json": "*",
+
+        "guzzlehttp/guzzle": "^6.3",
+        "reisraff/accentuation": "^2.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.11",
+        "phpstan/phpstan": "^1.8",
+        "phpunit/phpunit": "^9.5",
+        "symfony/var-dumper": "^6.1",
+        "kubawerlos/php-cs-fixer-custom-fixers": "^3.11",
+        "rector/rector": "^0.14.2"
+    },
+    "scripts": {
+        "cs": "./bin/php-cs-fixer fix --verbose --diff --using-cache=no --dry-run",
+        "cs-fix": "./bin/php-cs-fixer fix --verbose --diff --using-cache=no",
+        "phpstan": "./bin/phpstan analyse",
+        "phpunit": "./bin/phpunit",
+        "coverage": "./bin/phpunit --coverage-html coverage",
+        "check-style": [
+            "@cs",
+            "@phpstan"
+        ],
+        "tests": [
+            "@phpunit",
+            "@check-style"
+        ]
+    },
+    "config": {
+        "bin-dir": "bin"
+    }
+}
