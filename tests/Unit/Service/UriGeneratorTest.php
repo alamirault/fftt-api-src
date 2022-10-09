@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace Alamirault\FFTTApi\Tests\Service;
+namespace Alamirault\FFTTApi\Tests\Unit\Service;
 
 use Alamirault\FFTTApi\Service\UriGenerator;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @coversDefaultClass \FFTTApi\Service\UriGenerator
+ * @coversDefaultClass \Alamirault\FFTTApi\Service\UriGenerator
  */
 final class UriGeneratorTest extends TestCase
 {
