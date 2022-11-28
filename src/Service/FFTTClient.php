@@ -50,7 +50,6 @@ final class FFTTClient implements FFTTClientInterface
         // Lot of hacks due to ugly/buggy FFTT Api response format
         /** @var string $content */
         $content = preg_replace('/&(?!#?[a-z0-9]+;)/', '&amp;', $content);
-        $content = mb_convert_encoding($content, 'ISO-8859-1', 'UTF-8');
         $content = html_entity_decode($content);
 
         $xml = simplexml_load_string($content, 'SimpleXMLElement', LIBXML_NOCDATA);
