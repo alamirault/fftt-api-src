@@ -121,7 +121,7 @@ final class ListPartieOperation
     /**
      * Détermine si la date d'une rencontre passée en paramètre correspond à la saison en cours.
      */
-    private function isInCurrentSaison(\Datetime $dateRencontre): bool
+    private function isInCurrentSaison(\DateTime $dateRencontre): bool
     {
         $today = new \DateTime();
 
@@ -140,7 +140,7 @@ final class ListPartieOperation
      * Exemple : si nous sommes le 6 Octobre, nous prenons les rencontre du 1er Septembre à aujourd'hui.
      * Exemple : si nous sommes le 15 Octobre, nous prenons les rencontre du 1er Octobre (les points virtuels sont connus à partir du 5 et les rencontres sont comptabilisées du 1er au 31 du mois) à aujourd'hui.
      */
-    private function isInCurrentVirtualMonth(\Datetime $dateRencontre): bool
+    private function isInCurrentVirtualMonth(\DateTime $dateRencontre): bool
     {
         $today = new \DateTime();
 
