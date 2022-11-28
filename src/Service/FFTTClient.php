@@ -4,7 +4,6 @@ namespace Alamirault\FFTTApi\Service;
 
 use Alamirault\FFTTApi\Exception\InvalidRequestException;
 use Alamirault\FFTTApi\Exception\InvalidResponseException;
-use DomainException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use Psr\Http\Message\ResponseInterface;
@@ -42,7 +41,7 @@ final class FFTTClient implements FFTTClientInterface
         $response = $this->client->request('GET', $uri);
 
         if (200 !== $response->getStatusCode()) {
-            throw new DomainException(sprintf('Request "%s" returns an error', $uri));
+            throw new \DomainException(sprintf('Request "%s" returns an error', $uri));
         }
 
         $content = $response->getBody()->getContents();

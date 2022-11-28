@@ -19,9 +19,7 @@ final class RencontreDetailsFactory
     public function __construct(
         private readonly NomPrenomExtractorInterface $nomPrenomExtractor,
         private readonly ListJoueurOperation $listJoueurOperation,
-    )
-    {
-    }
+    ) {}
 
     /**
      * @param array{joueur: RawJoueur, resultat: RawResultat, partie: RawPartie} $array
@@ -167,6 +165,7 @@ final class RencontreDetailsFactory
                 }
                 $sexe = $result['sexe'];
                 $playerPoints = $result['points'];
+
                 return new Joueur(
                     $joueurClub->getNom(),
                     $joueurClub->getPrenom(),

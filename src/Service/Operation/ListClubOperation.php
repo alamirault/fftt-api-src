@@ -5,7 +5,6 @@ namespace Alamirault\FFTTApi\Service\Operation;
 use Alamirault\FFTTApi\Model\Club;
 use Alamirault\FFTTApi\Model\Factory\ClubFactory;
 use Alamirault\FFTTApi\Service\FFTTClientInterface;
-use Exception;
 
 final class ListClubOperation
 {
@@ -43,7 +42,7 @@ final class ListClubOperation
             $rawClubs = $this->arrayWrapper->wrapArrayIfUnique($rawClubs);
 
             return $this->clubFactory->createFromArray($rawClubs);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             return [];
         }
     }
