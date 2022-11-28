@@ -2,14 +2,12 @@
 
 namespace Alamirault\FFTTApi\Model;
 
-use DateTime;
-
 final class Club
 {
     public function __construct(
         private readonly string $numero,
         private readonly string $nom,
-        private readonly ?DateTime $dateValidation,
+        private readonly ?\DateTime $dateValidation,
     ) {}
 
     public function getNumero(): string
@@ -22,7 +20,7 @@ final class Club
         return $this->nom;
     }
 
-    public function getDateValidation(): ?DateTime
+    public function getDateValidation(): ?\DateTime
     {
         return $this->dateValidation;
     }

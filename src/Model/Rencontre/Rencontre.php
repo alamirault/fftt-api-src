@@ -2,8 +2,6 @@
 
 namespace Alamirault\FFTTApi\Model\Rencontre;
 
-use DateTime;
-
 final class Rencontre
 {
     public function __construct(
@@ -13,8 +11,8 @@ final class Rencontre
         private readonly int $scoreEquipeA,
         private readonly int $scoreEquipeB,
         private readonly string $lien,
-        private readonly DateTime $datePrevue,
-        private readonly ?DateTime $dateReelle,
+        private readonly \DateTime $datePrevue,
+        private readonly ?\DateTime $dateReelle,
     ) {}
 
     public function getLibelle(): string
@@ -47,12 +45,12 @@ final class Rencontre
         return $this->lien;
     }
 
-    public function getDatePrevue(): DateTime
+    public function getDatePrevue(): \DateTime
     {
         return $this->datePrevue;
     }
 
-    public function getDateReelle(): ?DateTime
+    public function getDateReelle(): ?\DateTime
     {
         return $this->dateReelle;
     }

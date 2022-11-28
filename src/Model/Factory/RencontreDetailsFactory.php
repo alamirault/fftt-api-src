@@ -170,7 +170,7 @@ final class RencontreDetailsFactory
                     $joueurClub->getNom(),
                     $joueurClub->getPrenom(),
                     $joueurClub->getLicence(),
-                    $playerPoints,
+                    (int) $playerPoints,
                     $sexe
                 );
             }

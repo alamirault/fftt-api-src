@@ -3,7 +3,6 @@
 namespace Alamirault\FFTTApi\Tests\Unit\Service\Operation;
 
 use Alamirault\FFTTApi\Service\Operation\ArrayWrapper;
-use Generator;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -28,9 +27,9 @@ final class ArrayWrapperTest extends TestCase
     }
 
     /**
-     * @return Generator<array<mixed>>
+     * @return \Generator<array<mixed>>
      */
-    public function getData(): Generator
+    public function getData(): \Generator
     {
         yield 'Unique element' => [
             [

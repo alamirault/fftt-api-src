@@ -3,7 +3,6 @@
 namespace Alamirault\FFTTApi\Tests\Unit\Service;
 
 use Alamirault\FFTTApi\Service\NomPrenomExtractor;
-use Generator;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -27,9 +26,9 @@ final class NomPrenomExtractorTest extends TestCase
     }
 
     /**
-     * @return Generator<array<string>>
+     * @return \Generator<array<string>>
      */
-    public function getData(): Generator
+    public function getData(): \Generator
     {
         yield [
             'MOREAU Véronique',

@@ -40,7 +40,7 @@ final class ListEquipeOperationTest extends TestCase
         $equipe = $result[0];
 
         $this->assertSame('A.P. ST SENOCH 2 - Phase 1', $equipe->getLibelle());
-        $this->assertSame('D37_D?PARTEMENTALE_3_Ph1 Poule 2', $equipe->getDivision());
+        $this->assertSame('D37_DÉPARTEMENTALE_3_Ph1 Poule 2', $equipe->getDivision());
         $this->assertSame('cx_poule=436904&D1=106653&organisme_pere=45', $equipe->getLienDivision());
     }
 }
