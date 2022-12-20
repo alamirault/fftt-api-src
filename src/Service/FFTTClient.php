@@ -52,7 +52,7 @@ final class FFTTClient implements FFTTClientInterface
         $content = html_entity_decode($content);
 
         // Some requests have a different header than others, whose data must be correctly encoded
-        if ($response->hasHeader('content-type') && $response->getHeader('content-type')[0] == 'text/html; charset=UTF-8') {
+        if ($response->hasHeader('content-type') && 'text/html; charset=UTF-8' === $response->getHeader('content-type')[0]) {
             $content = mb_convert_encoding($content, 'ISO-8859-1', 'UTF-8');
         }
 

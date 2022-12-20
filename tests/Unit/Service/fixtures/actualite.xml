@@ -1,24 +1,22 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<liste>
+<?xml version="1.0" encoding="ISO-8859-1"?><liste>
     <news>
         <date>2022-10-07</date>
-        <titre>Les Championnats du Monde Ping Parkinson débutent mercredi !</titre>
-        <description>Du 12 au 16 octobre, les Championnats du Monde Ping Parkinson se dérouleront à Pula en Croatie. Cinq Français seront présents lors de cette compétition.</description>
+        <titre>Les Championnats du Monde Ping Parkinson dÃ©butent mercredi !</titre>
+        <description>Du 12 au 16 octobre, les Championnats du Monde Ping Parkinson se dÃ©rouleront Ã  Pula en Croatie. Cinq FranÃ§ais seront prÃ©sents lors de cette compÃ©tition.
+
+            Avoir la...</description>
         <url>https://www.fftt.com/site/actualites/2022-10-07/les-championnats-monde-ping-parkinson-debutent-mercredi</url>
         <photo>https://www.fftt.com/site/medias/news/news__20221007145001.jpg</photo>
-        <categorie>Ping santé</categorie>
+        <categorie>Ping santÃ©</categorie>
     </news>
-
     <news>
         <date>2022-10-07</date>
         <titre>Si proches...</titre>
-        <description>L'équipe de France masculine s'incline 2 matchs à 3 face à l'Allemagne et quitte la compétition aux
-            portes des demi-finales.
+        <description>L'Ã©quipe de France masculine s'incline 2 matchs Ã  3 face Ã  l'Allemagne et quitte la compÃ©tition aux portes des demi-finales.
 
             Si proches &hellip;
 
-            Le...
-        </description>
+            Le...</description>
         <url>https://www.fftt.com/site/actualites/2022-10-07/si-proches</url>
         <photo>https://www.fftt.com/site/medias/news/news__20221007093621.jpg</photo>
         <categorie>Championnats du Monde</categorie>
@@ -26,9 +24,7 @@
     <news>
         <date>2022-10-06</date>
         <titre>La revanche ? Les Bleus joueront les Allemands en 1/4 de finale</titre>
-        <description>Les Bleus affronteront donc l'Allemagne pour un quart de finale qui aura un air de revanche puisque
-            les Français s'étaient inclinés 3 matchs à 1 en phase de...
-        </description>
+        <description>Les Bleus affronteront donc l'Allemagne pour un quart de finale qui aura un air de revanche puisque les FranÃ§ais s'Ã©taient inclinÃ©s 3 matchs Ã  1 en phase de...</description>
         <url>https://www.fftt.com/site/actualites/2022-10-06/la-revanche-bleus-joueront-allemands-en-1-4-de-finale</url>
         <photo>https://www.fftt.com/site/medias/news/news__20221006175007.jpg</photo>
         <categorie>Championnats du Monde</categorie>
@@ -36,9 +32,7 @@
     <news>
         <date>2022-10-05</date>
         <titre>Les Bleus sont en quarts de finale !</titre>
-        <description>Cette après-midi les Français se sont qualifiés pour les quarts de finale des championnats du Monde
-            par équipes de Chengdu. En revanche, c'est malheureusement...
-        </description>
+        <description>Cette aprÃ¨s-midi les FranÃ§ais se sont qualifiÃ©s pour les quarts de finale des championnats du Monde par Ã©quipes de Chengdu. En revanche, c'est malheureusement...</description>
         <url>https://www.fftt.com/site/actualites/2022-10-05/les-bleus-sont-en-quarts-de-finale</url>
         <photo>https://www.fftt.com/site/medias/news/news__20221005184354.jpg</photo>
         <categorie>Championnats du Monde</categorie>
@@ -46,19 +40,15 @@
     <news>
         <date>2022-09-21</date>
         <titre>Paris 2024 : A vos agendas pour obtenir vos billets !</titre>
-        <description>Le comité d'organisation de Paris 2024 a dévoilé ce mardi 20 septembre la procédure pour obtenir
-            des billets pour assister aux épreuves des prochains Jeux...
-        </description>
+        <description>Le comitÃ© d'organisation de Paris 2024 a dÃ©voilÃ© ce mardi 20 septembre la procÃ©dure pour obtenir des billets pour assister aux Ã©preuves des prochains Jeux...</description>
         <url>https://www.fftt.com/site/actualites/2022-09-21/paris-2024-vos-agendas-pour-obtenir-vos-billets</url>
         <photo>https://www.fftt.com/site/medias/news/news__20221005165214.jpg</photo>
         <categorie>Paris 2024</categorie>
     </news>
     <news>
         <date>2022-10-02</date>
-        <titre>Participez au webinaire de clôture de l'Été Ping !</titre>
-        <description>La deuxième édition de l'opération été Ping s'est achevée le 21 septembre dernier ! A cette
-            occasion, la Fédération...
-        </description>
+        <titre>Participez au webinaire de clÃ´ture de l'Ã‰tÃ© Ping !</titre>
+        <description>La deuxiÃ¨me Ã©dition de l'opÃ©ration Ã©tÃ© Ping s'est achevÃ©e le 21 septembre dernier ! A cette occasion, la FÃ©dÃ©ration...</description>
         <url>https://www.fftt.com/site/actualites/2022-10-02/participez-webinaire-de-cloture-de-ete-ping</url>
         <photo>https://www.fftt.com/site/medias/news/news__20221005130752.jpg</photo>
         <categorie>Ete Ping</categorie>
@@ -66,41 +56,34 @@
     <news>
         <date>2022-10-04</date>
         <titre>Mondiaux 2022 : Les Bleu(e)s en phases finales !</titre>
-        <description>C'était très tOt ce matin, les filles décrochaient leur ticket pour les huitièmes de finale des
-            championnats du Monde par équipes face au Brésil,...
-        </description>
+        <description>C'Ã©tait trÃ¨s tOt ce matin, les filles dÃ©crochaient leur ticket pour les huitiÃ¨mes de finale des championnats du Monde par Ã©quipes face au BrÃ©sil,...</description>
         <url>https://www.fftt.com/site/actualites/2022-10-04/mondiaux-2022-bleu-e-s-en-phases-finales</url>
         <photo>https://www.fftt.com/site/medias/news/news__20221004192731.jpg</photo>
         <categorie>Championnats du Monde</categorie>
     </news>
     <news>
         <date>2022-10-04</date>
-        <titre>Retour sur le TOP 10 européen jeunes de Tours</titre>
-        <description>Le TOP 10 européen jeunes se déroulait à Tours le 30 septembre, 1er et 2 octobre. Une édition
-            organisée pour la seconde année consécutive au...
-        </description>
+        <titre>Retour sur le TOP 10 europÃ©en jeunes de Tours</titre>
+        <description>Le TOP 10 europÃ©en jeunes se dÃ©roulait Ã  Tours le 30 septembre, 1er et 2 octobre. Une Ã©dition organisÃ©e pour la seconde annÃ©e consÃ©cutive au...</description>
         <url>https://www.fftt.com/site/actualites/2022-10-04/retour-top-10-europeen-jeunes-de-tours</url>
         <photo>https://www.fftt.com/site/medias/news/news__20221004165606.jpg</photo>
         <categorie>TOP 10</categorie>
     </news>
     <news>
         <date>2022-10-04</date>
-        <titre>Retour sur l?opération « Tous les jours tous en forme » !</titre>
-        <description>Faire bouger et jouer les usagers des transports parisiens au moins quinze minutes par jour, voilà
-            l'objectif visé par la RATP et la FFTT dans le cadre de l'opération...
-        </description>
+        <titre>Retour sur lâ€™opÃ©ration Â« Tous les jours tous en forme Â» !</titre>
+        <description>Faire bouger et jouer les usagers des transports parisiens au moins quinze minutes par jour, voilÃ  l'objectif visÃ© par la RATP et la FFTT dans le cadre de l'opÃ©ration...</description>
         <url>https://www.fftt.com/site/actualites/2022-10-04/retour-operation-tous-jours-tous-en-forme</url>
         <photo>https://www.fftt.com/site/medias/news/news__20221004105215.jpg</photo>
-        <categorie>Ping santé</categorie>
+        <categorie>Ping santÃ©</categorie>
     </news>
     <news>
         <date>2022-10-03</date>
-        <titre>La FFTT et la société KOMPAN deviennent partenaires</titre>
-        <description>La FFTT et la société KOMPAN deviennent partenaires
+        <titre>La FFTT et la sociÃ©tÃ© KOMPAN deviennent partenaires</titre>
+        <description>La FFTT et la sociÃ©tÃ© KOMPAN deviennent partenaires
 
 
-            La Fédération Française de Tennis de Table (FFTT) et KOMPAN s'associent pour le déploiement de...
-        </description>
+            La FÃ©dÃ©ration FranÃ§aise de Tennis de Table (FFTT) et KOMPAN s'associent pour le dÃ©ploiement de...</description>
         <url>https://www.fftt.com/site/actualites/2022-10-03/la-fftt-et-societe-kompan-deviennent-partenaires</url>
         <photo>https://www.fftt.com/site/medias/news/news__20221003103600.jpg</photo>
         <categorie>Partenariat</categorie>
