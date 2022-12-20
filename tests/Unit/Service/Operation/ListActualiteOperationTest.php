@@ -24,7 +24,9 @@ final class ListActualiteOperationTest extends TestCase
         /** @var string $responseContent */
         $responseContent = file_get_contents(__DIR__.'/../fixtures/actualite.xml');
         $mock = new MockHandlerStub([
-            new Response(200, [], $responseContent),
+            new Response(200, [
+                'content-type' => ['text/html; charset=UTF-8'],
+            ], $responseContent),
         ]);
 
         $handlerStack = HandlerStack::create($mock);
@@ -40,7 +42,7 @@ final class ListActualiteOperationTest extends TestCase
         $actualite = $result[0];
         $this->assertSame('Ping santé', $actualite->getCategorie());
         $this->assertSame('2022-10-07T00:00:00+00:00', $actualite->getDate()->format(DATE_ATOM));
-        $this->assertSame('Du 12 au 16 octobre, les Championnats du Monde Ping Parkinson se dérouleront à Pula en Croatie. Cinq Français seront présents lors de cette compétition.', $actualite->getDescription());
+        $this->assertStringContainsString('Du 12 au 16 octobre, les Championnats du Monde Ping Parkinson se dérouleront à Pula en Croatie. Cinq Français seront présents lors de cette compétition.', $actualite->getDescription());
         $this->assertSame('https://www.fftt.com/site/medias/news/news__20221007145001.jpg', $actualite->getPhoto());
         $this->assertSame('Les Championnats du Monde Ping Parkinson débutent mercredi !', $actualite->getTitre());
         $this->assertSame('https://www.fftt.com/site/actualites/2022-10-07/les-championnats-monde-ping-parkinson-debutent-mercredi', $actualite->getUrl());
