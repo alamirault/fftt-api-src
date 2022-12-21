@@ -34,7 +34,7 @@ final class ListEpreuveOperationTest extends TestCase
 
         $result = $operation->listEpreuves('E', 105);
 
-        $this->assertCount(3, $result);
+        $this->assertCount(4, $result);
 
         $equipe = $result[0];
 
