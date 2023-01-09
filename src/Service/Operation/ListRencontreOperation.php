@@ -17,11 +17,11 @@ final class ListRencontreOperation
      */
     public function listRencontrePouleByLienDivision(string $lienDivision): array
     {
-        /** @var array<array{equa: array<mixed>|string, equb: array<mixed>|string, dateprevue:string, datereelle: ?string, libelle: string, scorea: string, scoreb: string, lien: string }> $data */
         $data = $this->client->get('xml_result_equ', [], $lienDivision);
 
         $result = [];
         if (array_key_exists('tour', $data)) {
+            /** @var array<array{equa: array<mixed>|string, equb: array<mixed>|string, dateprevue:string, datereelle: ?string, libelle: string, scorea: string, scoreb: string, lien: string }> $data */
             $data = $data['tour'];
             foreach ($data as $dataRencontre) {
                 $equipeA = $dataRencontre['equa'];
