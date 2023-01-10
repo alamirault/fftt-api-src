@@ -6,6 +6,7 @@ use Alamirault\FFTTApi\Model\Actualite;
 use Alamirault\FFTTApi\Model\Classement;
 use Alamirault\FFTTApi\Model\Club;
 use Alamirault\FFTTApi\Model\ClubDetails;
+use Alamirault\FFTTApi\Model\Enums\TypeEpreuveEnum;
 use Alamirault\FFTTApi\Model\Epreuve;
 use Alamirault\FFTTApi\Model\Equipe;
 use Alamirault\FFTTApi\Model\EquipePoule;
@@ -231,8 +232,8 @@ final class FFTTApi
     /**
      * @return array<Epreuve>
      */
-    public function listEpreuves(string $type = 'I', int $organisme = 1): array
+    public function listEpreuves(int $organisme, TypeEpreuveEnum $type = TypeEpreuveEnum::Equipe): array
     {
-        return $this->listEpreuveOperation->listEpreuves($type, $organisme);
+        return $this->listEpreuveOperation->listEpreuves($organisme, $type);
     }
 }

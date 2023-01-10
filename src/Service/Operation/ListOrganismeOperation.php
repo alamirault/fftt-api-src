@@ -14,7 +14,7 @@ final class ListOrganismeOperation
     /**
      * @return array<Organisme>
      */
-    public function listOrganismes(string $type): array
+    public function listOrganismes(string $type = 'Z'): array
     {
         if (!in_array($type, ['Z', 'L', 'D'])) {
             $type = 'L';

@@ -2,6 +2,7 @@
 
 namespace Alamirault\FFTTApi\Tests\Unit\Service\Operation;
 
+use Alamirault\FFTTApi\Model\Enums\TypeEpreuveEnum;
 use Alamirault\FFTTApi\Service\FFTTClient;
 use Alamirault\FFTTApi\Service\Operation\ListEpreuveOperation;
 use Alamirault\FFTTApi\Service\UriGenerator;
@@ -32,7 +33,7 @@ final class ListEpreuveOperationTest extends TestCase
 
         $operation = new ListEpreuveOperation($FFTTClient);
 
-        $result = $operation->listEpreuves('E', 105);
+        $result = $operation->listEpreuves(105, TypeEpreuveEnum::Equipe);
 
         $this->assertCount(4, $result);
 
