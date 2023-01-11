@@ -20,7 +20,7 @@ final class ListEpreuveOperation
         /** @var array<array{idepreuve: string, idorga: string, libelle:string, typepreuve: string}> $epreuves */
         $epreuves = $this->client->get('xml_epreuve', [
             'type' => $type->value,
-            'organisme' => strval($organisme),
+            'organisme' => (string) $organisme,
         ])['epreuve'];
 
         $result = [];
