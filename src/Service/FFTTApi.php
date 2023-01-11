@@ -6,6 +6,8 @@ use Alamirault\FFTTApi\Model\Actualite;
 use Alamirault\FFTTApi\Model\Classement;
 use Alamirault\FFTTApi\Model\Club;
 use Alamirault\FFTTApi\Model\ClubDetails;
+use Alamirault\FFTTApi\Model\Enums\TypeEpreuveEnum;
+use Alamirault\FFTTApi\Model\Epreuve;
 use Alamirault\FFTTApi\Model\Equipe;
 use Alamirault\FFTTApi\Model\EquipePoule;
 use Alamirault\FFTTApi\Model\Factory\ClubFactory;
@@ -22,6 +24,7 @@ use Alamirault\FFTTApi\Model\VirtualPoints;
 use Alamirault\FFTTApi\Service\Operation\ArrayWrapper;
 use Alamirault\FFTTApi\Service\Operation\ListActualiteOperation;
 use Alamirault\FFTTApi\Service\Operation\ListClubOperation;
+use Alamirault\FFTTApi\Service\Operation\ListEpreuveOperation;
 use Alamirault\FFTTApi\Service\Operation\ListEquipeOperation;
 use Alamirault\FFTTApi\Service\Operation\ListEquipePouleOperation;
 use Alamirault\FFTTApi\Service\Operation\ListHistoriqueOperation;
@@ -56,6 +59,7 @@ final class FFTTApi
     private ListRencontreOperation $listRencontreOperation;
     private RetrieveRencontreDetailsOperation $retrieveRencontreDetailsOperation;
     private ListActualiteOperation $listActualiteOperation;
+    private ListEpreuveOperation $listEpreuveOperation;
 
     public function __construct(string $id, string $password)
     {
@@ -88,6 +92,7 @@ final class FFTTApi
         $rencontreDetailsFactory = new RencontreDetailsFactory($nomPrenomExtractor, $this->listJoueurOperation);
         $this->retrieveRencontreDetailsOperation = new RetrieveRencontreDetailsOperation($FFTTClient, $rencontreDetailsFactory);
         $this->listActualiteOperation = new ListActualiteOperation($FFTTClient, $arrayWrapper);
+        $this->listEpreuveOperation = new ListEpreuveOperation($FFTTClient);
     }
 
     /**
@@ -222,5 +227,13 @@ final class FFTTApi
     public function listActualites(): array
     {
         return $this->listActualiteOperation->listActualites();
+    }
+
+    /**
+     * @return array<Epreuve>
+     */
+    public function listEpreuves(int $organisme, TypeEpreuveEnum $type = TypeEpreuveEnum::Equipe): array
+    {
+        return $this->listEpreuveOperation->listEpreuves($organisme, $type);
     }
 }
