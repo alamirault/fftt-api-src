@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
 namespace Alamirault\FFTTApi\Model;
+
 use Alamirault\FFTTApi\Model\Enums\NationaliteEnum;
 use Alamirault\FFTTApi\Model\Enums\TypeLicenceEnum;
 
 final class JoueurDetails
 {
-
     public function __construct(
         private readonly int $idLicence,
         private readonly string $licence,
@@ -17,7 +17,8 @@ final class JoueurDetails
         private readonly string $numClub,
         private readonly string $nomClub,
         private readonly bool $isHomme,
-        private readonly string $categorie, // TODO: Créer une Enum
+        private readonly string $categorie,
+        // TODO: Créer une Enum pour convertir en libellés plus explicites
         private readonly float $pointDebutSaison,
         private readonly float $pointsLicence,
         private readonly float $pointsMensuel,
@@ -28,30 +29,39 @@ final class JoueurDetails
         private readonly ?\DateTime $dateMutation,
         private readonly ?string $diplomeArbitre,
         private readonly ?string $diplomeJugeArbitre,
-        private readonly ?string $diplomeTechnique
+        private readonly ?string $diplomeTechnique,
     ) {
-        // Définition de la nationalité
-        switch ($this->nationalite) {
-            case NationaliteEnum::Francaise->value:
-                $this->nationalite = "Nationalité française";
+        $this->setNationalite();
+        $this->setTypeLicence();
+    }
+
+    private function setTypeLicence(): void
+    {
+        switch ($this->typeLicence) {
+            case TypeLicenceEnum::Competiteur->value:
+                $this->typeLicence = 'Compétiteur';
                 break;
-            case NationaliteEnum::Europeenne->value:
-                $this->nationalite = "Nationalité européenne";
-                break;
-            case NationaliteEnum::Etrangere->value:
-                $this->nationalite = "Nationalité étrangère";
+            case TypeLicenceEnum::Loisir->value:
+                $this->typeLicence = 'Loisir';
                 break;
             default:
                 break;
         }
+    }
 
-        // Définition du type de licence
-        switch ($this->typeLicence) {
-            case TypeLicenceEnum::Competiteur->value:
-                $this->typeLicence =  "Compétiteur";
+    private function setNationalite(): void
+    {
+        switch ($this->nationalite) {
+            case NationaliteEnum::Francaise->value:
+                $this->nationalite = 'Nationalité française';
                 break;
-            case TypeLicenceEnum::Loisir->value:
-                $this->typeLicence =  "Loisir";
+            case NationaliteEnum::Europeenne->value:
+                $this->nationalite = 'Nationalité européenne';
+                break;
+            case NationaliteEnum::Etrangere->value:
+                $this->nationalite = 'Nationalité étrangère';
+                break;
+            default:
                 break;
         }
     }
@@ -60,7 +70,7 @@ final class JoueurDetails
     {
         return $this->idLicence;
     }
-    
+
     public function getDiplomeArbitre(): ?string
     {
         return $this->diplomeArbitre;
@@ -75,12 +85,12 @@ final class JoueurDetails
     {
         return $this->diplomeTechnique;
     }
-    
+
     public function getClassementNational(): ?int
     {
         return $this->classementNational;
     }
-    
+
     public function getNationalite(): string
     {
         return $this->nationalite;
@@ -90,22 +100,22 @@ final class JoueurDetails
     {
         return $this->dateValidation;
     }
-    
+
     public function getDateMutation(): ?\DateTime
     {
         return $this->dateMutation;
     }
-    
+
     public function getTypeLicence(): string
     {
         return $this->typeLicence;
     }
-    
+
     public function isClasseNational(): bool
     {
         return $this->isClasseNational;
     }
-    
+
     public function getLicence(): string
     {
         return $this->licence;

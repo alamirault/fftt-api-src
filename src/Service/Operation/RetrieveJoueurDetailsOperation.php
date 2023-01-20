@@ -7,7 +7,6 @@ use Alamirault\FFTTApi\Exception\JoueurNotFoundException;
 use Alamirault\FFTTApi\Model\JoueurDetails;
 use Alamirault\FFTTApi\Service\FFTTClientInterface;
 
-
 final class RetrieveJoueurDetailsOperation
 {
     public const TYPE_HOMME = 'M';
@@ -61,9 +60,9 @@ final class RetrieveJoueurDetailsOperation
             (float) ($data['pointm'] ?? (float) $data['point']),
             (float) ($data['apointm'] ?? (float) $data['point']),
             self::TYPE_CLASSE_NATIONAL === $data['echelon'] ? true : false,
-            $data['place'] != null ? (int) $data['place'] : null,
+            null != $data['place'] ? (int) $data['place'] : null,
             $data['natio'],
-            $data['mutation'] ? \DateTime::createFromFormat('!d/m/Y', $data['validation']) : null,
+            $data['mutation'] ? \DateTime::createFromFormat('!d/m/Y', $data['mutation']) : null,
             $data['arb'] ?: null,
             $data['ja'] ?: null,
             $data['tech'] ?: null
