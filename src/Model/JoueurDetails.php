@@ -12,8 +12,8 @@ final class JoueurDetails
         private readonly string $licence,
         private readonly string $nom,
         private readonly string $prenom,
-        private string $typeLicence,
-        private readonly \DateTime $dateValidation,
+        private ?string $typeLicence,
+        private readonly ?\DateTime $dateValidation,
         private readonly string $numClub,
         private readonly string $nomClub,
         private readonly bool $isHomme,
@@ -38,11 +38,11 @@ final class JoueurDetails
     private function setTypeLicence(): void
     {
         switch ($this->typeLicence) {
-            case TypeLicenceEnum::Competiteur->value:
-                $this->typeLicence = 'Compétiteur';
+            case TypeLicenceEnum::Traditionnelle->value:
+                $this->typeLicence = 'Traditionnelle';
                 break;
-            case TypeLicenceEnum::Loisir->value:
-                $this->typeLicence = 'Loisir';
+            case TypeLicenceEnum::Promotionnelle->value:
+                $this->typeLicence = 'Promotionnelle';
                 break;
             default:
                 break;

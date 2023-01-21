@@ -3,6 +3,7 @@
 namespace Alamirault\FFTTApi\Service\Operation;
 
 use Alamirault\FFTTApi\Exception\ClubNotFoundException;
+use Alamirault\FFTTApi\Exception\InternalServerErrorException;
 use Alamirault\FFTTApi\Exception\JoueurNotFoundException;
 use Alamirault\FFTTApi\Model\JoueurDetails;
 use Alamirault\FFTTApi\Service\FFTTClientInterface;
@@ -21,7 +22,7 @@ final class RetrieveJoueurDetailsOperation
      *
      * @throws JoueurNotFoundException
      */
-    public function retrieveJoueurDetails(string $licenceId, ?string $clubId = null): JoueurDetails
+    public function retrieveJoueurDetails(string $licenceId, ?string $clubId = null): JoueurDetails|array
     {
         $options = [
             'licence' => $licenceId,
@@ -34,7 +35,7 @@ final class RetrieveJoueurDetailsOperation
         try {
             /** @var array<mixed> $data */
             $data = $this->client->get('xml_licence_b', $options);
-        } catch (\Exception) {
+        } catch (InternalServerErrorException) {
             throw new ClubNotFoundException($clubId);
         }
 
@@ -44,30 +45,42 @@ final class RetrieveJoueurDetailsOperation
             throw new JoueurNotFoundException($licenceId, $clubId);
         }
 
-        $joueurDetails = new JoueurDetails(
-            (int) $data['idlicence'],
-            $licenceId,
-            $data['nom'],
-            $data['prenom'],
-            $data['type'],
-            \DateTime::createFromFormat('!d/m/Y', $data['validation']),
-            $data['numclub'],
-            $data['nomclub'],
-            self::TYPE_HOMME === $data['sexe'] ? true : false,
-            $data['cat'],
-            (float) ($data['initm'] ?? (float) $data['point']),
-            (float) $data['point'],
-            (float) ($data['pointm'] ?? (float) $data['point']),
-            (float) ($data['apointm'] ?? (float) $data['point']),
-            self::TYPE_CLASSE_NATIONAL === $data['echelon'] ? true : false,
-            null != $data['place'] ? (int) $data['place'] : null,
-            $data['natio'],
-            $data['mutation'] ? \DateTime::createFromFormat('!d/m/Y', $data['mutation']) : null,
-            $data['arb'] ?: null,
-            $data['ja'] ?: null,
-            $data['tech'] ?: null
-        );
+        if (is_array(array_values($data)[0])) { // Une liste de joueurs est retournée si le paramètre "licence" est vide et que "club" est renseigné et existe
+            $listeJoueurs = [];
+            foreach ($data as $joueur) {
+                $listeJoueurs[] = $this->returnJoueurDetails($joueur);
+            }
 
-        return $joueurDetails;
+            return $listeJoueurs;
+        } else {
+            return $this->returnJoueurDetails($data);
+        }
+    }
+
+    private function returnJoueurDetails(array $joueurDetails): JoueurDetails
+    {
+        return new JoueurDetails(
+            (int) $joueurDetails['idlicence'],
+            $joueurDetails['licence'],
+            $joueurDetails['nom'],
+            $joueurDetails['prenom'],
+            $joueurDetails['type'] ?: null,
+            $joueurDetails['validation'] ? \DateTime::createFromFormat('!d/m/Y', $joueurDetails['validation']) : null,
+            $joueurDetails['numclub'],
+            $joueurDetails['nomclub'],
+            self::TYPE_HOMME === $joueurDetails['sexe'] ? true : false,
+            $joueurDetails['cat'],
+            (float) ($joueurDetails['initm'] ?? (float) $joueurDetails['point']),
+            (float) $joueurDetails['point'],
+            (float) ($joueurDetails['pointm'] ?? (float) $joueurDetails['point']),
+            (float) ($joueurDetails['apointm'] ?? (float) $joueurDetails['point']),
+            self::TYPE_CLASSE_NATIONAL === $joueurDetails['echelon'] ? true : false,
+            null != $joueurDetails['place'] ? (int) $joueurDetails['place'] : null,
+            $joueurDetails['natio'],
+            $joueurDetails['mutation'] ? \DateTime::createFromFormat('!d/m/Y', $joueurDetails['mutation']) : null,
+            $joueurDetails['arb'] ?: null,
+            $joueurDetails['ja'] ?: null,
+            $joueurDetails['tech'] ?: null
+        );
     }
 }
