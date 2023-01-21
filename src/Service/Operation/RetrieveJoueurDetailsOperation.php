@@ -34,7 +34,7 @@ final class RetrieveJoueurDetailsOperation
         try {
             /** @var array<mixed> $data */
             $data = $this->client->get('xml_licence_b', $options);
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             throw new ClubNotFoundException($clubId);
         }
 

@@ -2,6 +2,8 @@
 
 namespace Alamirault\FFTTApi\Tests\Unit\Service\Operation;
 
+use Alamirault\FFTTApi\Exception\ClubNotFoundException;
+use Alamirault\FFTTApi\Exception\JoueurNotFoundException;
 use Alamirault\FFTTApi\Service\FFTTClient;
 use Alamirault\FFTTApi\Service\Operation\RetrieveJoueurDetailsOperation;
 use Alamirault\FFTTApi\Service\UriGenerator;
@@ -62,7 +64,7 @@ final class RetrieveJoueurDetailsOperationTest extends TestCase
     }
 
     /**
-     * Cas d'un joueur existant sans clubId.
+     * Cas d'un joueur existant avec clubId existant.
      *
      * @covers ::retrieveJoueurDetails
      */
@@ -105,5 +107,97 @@ final class RetrieveJoueurDetailsOperationTest extends TestCase
         $this->assertSame(null, $joueurDetails->getDiplomeArbitre());
         $this->assertSame(null, $joueurDetails->getDiplomeJugeArbitre());
         $this->assertSame(null, $joueurDetails->getDiplomeTechnique());
+    }
+
+    /**
+     * Cas d'un joueur non existant sans clubId.
+     *
+     * @covers ::retrieveJoueurDetails
+     */
+    public function testRetrieveJoueurDetailsJoueurNonExistantSansIdClub(): void
+    {
+        /** @var string $responseContent */
+        $responseContent = '<?xml version="1.0" encoding="ISO-8859-1"?><liste/>';
+        $mock = new MockHandlerStub([
+            new Response(200, [
+                'content-type' => ['text/html; charset=UTF-8'],
+            ], $responseContent),
+        ]);
+
+        $handlerStack = HandlerStack::create($mock);
+        $client = new Client(['handler' => $handlerStack]);
+        $FFTTClient = new FFTTClient($client, new UriGenerator('foo', 'bar'));
+
+        $operation = new RetrieveJoueurDetailsOperation($FFTTClient);
+        $licence = '0000000';
+
+        try {
+            $operation->retrieveJoueurDetails($licence);
+        } catch (\Exception $e) {
+            $this->assertSame("Joueur '0000000' does not exist", $e->getMessage());
+            $this->assertSame(JoueurNotFoundException::class, $e::class);
+        }
+    }
+
+    /**
+     * Cas d'un joueur existant avec clubId non existant.
+     *
+     * @covers ::retrieveJoueurDetails
+     */
+    public function testRetrieveJoueurDetailsJoueurExistantAvecIdClubNonExistant(): void
+    {
+        /** @var string $responseContent */
+        $responseContent = '{"type":"https://tools.ietf.org/html/rfc2616#section-10","title":"An error occurred","detail":"Internal Server Error"}';
+        $mock = new MockHandlerStub([
+            new Response(500, [
+                'content-type' => ['text/html; charset=UTF-8'],
+            ], $responseContent),
+        ]);
+
+        $handlerStack = HandlerStack::create($mock);
+        $client = new Client(['handler' => $handlerStack]);
+        $FFTTClient = new FFTTClient($client, new UriGenerator('foo', 'bar'));
+
+        $operation = new RetrieveJoueurDetailsOperation($FFTTClient);
+        $licence = '9529825';
+        $clubId = '0000000';
+
+        try {
+            $operation->retrieveJoueurDetails($licence, $clubId);
+        } catch (\Exception $e) {
+            $this->assertSame("Club '0000000' does not exist", $e->getMessage());
+            $this->assertSame(ClubNotFoundException::class, $e::class);
+        }
+    }
+
+    /**
+     * Cas d'un joueur non existant avec clubId existant.
+     *
+     * @covers ::retrieveJoueurDetails
+     */
+    public function testRetrieveJoueurDetailsJoueurNonExistantAvecIdClubExistant(): void
+    {
+        /** @var string $responseContent */
+        $responseContent = '<?xml version="1.0" encoding="ISO-8859-1"?><liste/>';
+        $mock = new MockHandlerStub([
+            new Response(200, [
+                'content-type' => ['text/html; charset=UTF-8'],
+            ], $responseContent),
+        ]);
+
+        $handlerStack = HandlerStack::create($mock);
+        $client = new Client(['handler' => $handlerStack]);
+        $FFTTClient = new FFTTClient($client, new UriGenerator('foo', 'bar'));
+
+        $operation = new RetrieveJoueurDetailsOperation($FFTTClient);
+        $licence = '0000000';
+        $clubId = '08951331';
+
+        try {
+            $operation->retrieveJoueurDetails($licence, $clubId);
+        } catch (\Exception $e) {
+            $this->assertSame("Joueur '0000000' does not exist in club '08951331'", $e->getMessage());
+            $this->assertSame(JoueurNotFoundException::class, $e::class);
+        }
     }
 }
