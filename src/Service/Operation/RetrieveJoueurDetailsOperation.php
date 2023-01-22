@@ -39,8 +39,11 @@ final class RetrieveJoueurDetailsOperation
         try {
             /** @var array<mixed> $data */
             $data = $this->client->get('xml_licence_b', $options);
-        } catch (InternalServerErrorException) {
-            throw new ClubNotFoundException($clubId);
+        } catch (InternalServerErrorException $e) {
+            if (null !== $clubId) {
+                throw new ClubNotFoundException($clubId);
+            }
+            throw $e;
         }
 
         if (array_key_exists('licence', $data)) {
