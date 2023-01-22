@@ -32,7 +32,7 @@ final class RetrieveJoueurDetailsOperation
             'licence' => $licenceId,
         ];
 
-        if (null != $clubId) {
+        if (null !== $clubId) {
             $options['club'] = $clubId;
         }
 
