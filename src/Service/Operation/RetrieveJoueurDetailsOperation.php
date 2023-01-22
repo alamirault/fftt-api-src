@@ -5,6 +5,8 @@ namespace Alamirault\FFTTApi\Service\Operation;
 use Alamirault\FFTTApi\Exception\ClubNotFoundException;
 use Alamirault\FFTTApi\Exception\InternalServerErrorException;
 use Alamirault\FFTTApi\Exception\JoueurNotFoundException;
+use Alamirault\FFTTApi\Model\Enums\NationaliteEnum;
+use Alamirault\FFTTApi\Model\Enums\TypeLicenceEnum;
 use Alamirault\FFTTApi\Model\JoueurDetails;
 use Alamirault\FFTTApi\Service\FFTTClientInterface;
 
@@ -69,19 +71,19 @@ final class RetrieveJoueurDetailsOperation
             $joueurDetails['licence'],
             $joueurDetails['nom'],
             $joueurDetails['prenom'],
-            $joueurDetails['type'] ?: null,
+            $joueurDetails['type'] ? TypeLicenceEnum::from($joueurDetails['type']) : null,
             $joueurDetails['validation'] && \DateTime::createFromFormat('!d/m/Y', $joueurDetails['validation']) ? \DateTime::createFromFormat('!d/m/Y', $joueurDetails['validation']) : null,
             $joueurDetails['numclub'],
             $joueurDetails['nomclub'],
-            self::TYPE_HOMME === $joueurDetails['sexe'] ? true : false,
+            self::TYPE_HOMME === $joueurDetails['sexe'],
             $joueurDetails['cat'],
             $joueurDetails['initm'] ? (float) $joueurDetails['initm'] : null,
             (float) $joueurDetails['point'],
             $joueurDetails['pointm'] ? (float) $joueurDetails['pointm'] : null,
             $joueurDetails['apointm'] ? (float) $joueurDetails['apointm'] : null,
-            self::TYPE_CLASSE_NATIONAL === $joueurDetails['echelon'] ? true : false,
-            null != $joueurDetails['place'] ? (int) $joueurDetails['place'] : null,
-            $joueurDetails['natio'],
+            self::TYPE_CLASSE_NATIONAL === $joueurDetails['echelon'],
+            $joueurDetails['place'] ? (int) $joueurDetails['place'] : null,
+            NationaliteEnum::from($joueurDetails['natio']),
             $joueurDetails['mutation'] && \DateTime::createFromFormat('!d/m/Y', $joueurDetails['mutation']) ? \DateTime::createFromFormat('!d/m/Y', $joueurDetails['mutation']) : null,
             $joueurDetails['arb'] ?: null,
             $joueurDetails['ja'] ?: null,

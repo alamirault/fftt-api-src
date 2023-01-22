@@ -12,59 +12,25 @@ final class JoueurDetails
         private readonly string $licence,
         private readonly string $nom,
         private readonly string $prenom,
-        private string|null $typeLicence,
+        private readonly TypeLicenceEnum|null $typeLicence,
         private readonly \DateTime|null $dateValidation,
         private readonly string $numClub,
         private readonly string $nomClub,
         private readonly bool $isHomme,
         private readonly string $categorie,
-        // TODO: Créer une Enum pour convertir en libellés plus explicites
+        // TODO: Créer une Enum pour convertir "categorie" en libellés plus explicites
         private readonly float|null $pointDebutSaison,
         private readonly float $pointsLicence,
         private readonly float|null $pointsMensuel,
         private readonly float|null $pointsMensuelAnciens,
         private readonly bool $isClasseNational,
         private readonly int|null $classementNational,
-        private string $nationalite,
+        private readonly NationaliteEnum $nationalite,
         private readonly \DateTime|null $dateMutation,
         private readonly string|null $diplomeArbitre,
         private readonly string|null $diplomeJugeArbitre,
         private readonly string|null $diplomeTechnique,
-    ) {
-        $this->setNationalite();
-        $this->setTypeLicence();
-    }
-
-    private function setTypeLicence(): void
-    {
-        switch ($this->typeLicence) {
-            case TypeLicenceEnum::Traditionnelle->value:
-                $this->typeLicence = 'Traditionnelle';
-                break;
-            case TypeLicenceEnum::Promotionnelle->value:
-                $this->typeLicence = 'Promotionnelle';
-                break;
-            default:
-                break;
-        }
-    }
-
-    private function setNationalite(): void
-    {
-        switch ($this->nationalite) {
-            case NationaliteEnum::Francaise->value:
-                $this->nationalite = 'Nationalité française';
-                break;
-            case NationaliteEnum::Europeenne->value:
-                $this->nationalite = 'Nationalité européenne';
-                break;
-            case NationaliteEnum::Etrangere->value:
-                $this->nationalite = 'Nationalité étrangère';
-                break;
-            default:
-                break;
-        }
-    }
+    ) {}
 
     public function getIdLicence(): int
     {
@@ -91,7 +57,7 @@ final class JoueurDetails
         return $this->classementNational;
     }
 
-    public function getNationalite(): string
+    public function getNationalite(): NationaliteEnum
     {
         return $this->nationalite;
     }
@@ -106,7 +72,7 @@ final class JoueurDetails
         return $this->dateMutation;
     }
 
-    public function getTypeLicence(): string|null
+    public function getTypeLicence(): TypeLicenceEnum|null
     {
         return $this->typeLicence;
     }

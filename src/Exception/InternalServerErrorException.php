@@ -4,7 +4,7 @@ namespace Alamirault\FFTTApi\Exception;
 
 final class InternalServerErrorException extends \Exception
 {
-    public function __construct(string $uri, ?int $statusCode = 500, ?string $content = '')
+    public function __construct(string $uri, ?int $statusCode, ?string $content)
     {
         parent::__construct(
             sprintf(
