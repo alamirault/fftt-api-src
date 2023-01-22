@@ -4,10 +4,7 @@ namespace Alamirault\FFTTApi\Exception;
 
 final class InternalServerErrorException extends \Exception
 {
-    /**
-     * @param array<mixed> $content
-     */
-    public function __construct(string $uri, int $statusCode, string $content)
+    public function __construct(string $uri, ?int $statusCode = 500, ?string $content = '')
     {
         parent::__construct(
             sprintf(

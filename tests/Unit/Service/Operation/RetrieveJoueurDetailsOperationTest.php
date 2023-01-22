@@ -5,6 +5,7 @@ namespace Alamirault\FFTTApi\Tests\Unit\Service\Operation;
 use Alamirault\FFTTApi\Exception\ClubNotFoundException;
 use Alamirault\FFTTApi\Exception\InvalidRequestException;
 use Alamirault\FFTTApi\Exception\JoueurNotFoundException;
+use Alamirault\FFTTApi\Model\JoueurDetails;
 use Alamirault\FFTTApi\Service\FFTTClient;
 use Alamirault\FFTTApi\Service\Operation\RetrieveJoueurDetailsOperation;
 use Alamirault\FFTTApi\Service\UriGenerator;
@@ -39,6 +40,7 @@ final class RetrieveJoueurDetailsOperationTest extends TestCase
 
         $operation = new RetrieveJoueurDetailsOperation($FFTTClient);
 
+        /** @var JoueurDetails $joueurDetails */
         $joueurDetails = $operation->retrieveJoueurDetails('3418930');
 
         $this->assertSame(639188, $joueurDetails->getIdLicence());
@@ -49,7 +51,7 @@ final class RetrieveJoueurDetailsOperationTest extends TestCase
         $this->assertSame('MONTPELLIER TT', $joueurDetails->getNomClub());
         $this->assertSame(true, $joueurDetails->isHomme());
         $this->assertSame('Traditionnelle', $joueurDetails->getTypeLicence());
-        $this->assertSame('01/08/2022', $joueurDetails->getDateValidation()->format('d/m/Y'));
+        $this->assertSame('01/08/2022', $joueurDetails->getDateValidation()?->format('d/m/Y'));
         $this->assertSame(true, $joueurDetails->isClasseNational());
         $this->assertSame('S', $joueurDetails->getCategorie());
         $this->assertSame(5, $joueurDetails->getClassementNational());
@@ -58,7 +60,7 @@ final class RetrieveJoueurDetailsOperationTest extends TestCase
         $this->assertSame(3453.0, $joueurDetails->getPointDebutSaison());
         $this->assertSame(3508.0, $joueurDetails->getPointsLicence());
         $this->assertSame('Nationalité française', $joueurDetails->getNationalite());
-        $this->assertSame('21/02/2022', $joueurDetails->getDateMutation()->format('d/m/Y'));
+        $this->assertSame('21/02/2022', $joueurDetails->getDateMutation()?->format('d/m/Y'));
         $this->assertSame(null, $joueurDetails->getDiplomeArbitre());
         $this->assertSame(null, $joueurDetails->getDiplomeJugeArbitre());
         $this->assertSame(null, $joueurDetails->getDiplomeTechnique());
@@ -85,6 +87,7 @@ final class RetrieveJoueurDetailsOperationTest extends TestCase
 
         $operation = new RetrieveJoueurDetailsOperation($FFTTClient);
 
+        /** @var JoueurDetails $joueurDetails */
         $joueurDetails = $operation->retrieveJoueurDetails('2221557', '08950978');
 
         $this->assertSame(1370316, $joueurDetails->getIdLicence());
@@ -95,7 +98,7 @@ final class RetrieveJoueurDetailsOperationTest extends TestCase
         $this->assertSame('EAUBONNE CSM TT', $joueurDetails->getNomClub());
         $this->assertSame(true, $joueurDetails->isHomme());
         $this->assertSame('Traditionnelle', $joueurDetails->getTypeLicence());
-        $this->assertSame('18/09/2022', $joueurDetails->getDateValidation()->format('d/m/Y'));
+        $this->assertSame('18/09/2022', $joueurDetails->getDateValidation()?->format('d/m/Y'));
         $this->assertSame(false, $joueurDetails->isClasseNational());
         $this->assertSame('V1', $joueurDetails->getCategorie());
         $this->assertSame(null, $joueurDetails->getClassementNational());
@@ -104,7 +107,7 @@ final class RetrieveJoueurDetailsOperationTest extends TestCase
         $this->assertSame(710.0, $joueurDetails->getPointDebutSaison());
         $this->assertSame(807.0, $joueurDetails->getPointsLicence());
         $this->assertSame('Nationalité française', $joueurDetails->getNationalite());
-        $this->assertSame('01/07/2022', $joueurDetails->getDateMutation()->format('d/m/Y'));
+        $this->assertSame('01/07/2022', $joueurDetails->getDateMutation()?->format('d/m/Y'));
         $this->assertSame(null, $joueurDetails->getDiplomeArbitre());
         $this->assertSame(null, $joueurDetails->getDiplomeJugeArbitre());
         $this->assertSame(null, $joueurDetails->getDiplomeTechnique());
@@ -254,10 +257,12 @@ final class RetrieveJoueurDetailsOperationTest extends TestCase
 
         $operation = new RetrieveJoueurDetailsOperation($FFTTClient);
 
+        /** @var array<JoueurDetails> $listeJoueurDetails */
         $listeJoueurDetails = $operation->retrieveJoueurDetails('', '08951331');
 
         $this->assertCount(82, $listeJoueurDetails);
 
+        /** @var JoueurDetails $joueurDetails */
         $joueurDetails = $listeJoueurDetails[33];
 
         $this->assertSame(1342005, $joueurDetails->getIdLicence());
@@ -268,7 +273,7 @@ final class RetrieveJoueurDetailsOperationTest extends TestCase
         $this->assertSame('LA FRETTE ESFTT', $joueurDetails->getNomClub());
         $this->assertSame(false, $joueurDetails->isHomme());
         $this->assertSame('Promotionnelle', $joueurDetails->getTypeLicence());
-        $this->assertSame('15/09/2022', $joueurDetails->getDateValidation()->format('d/m/Y'));
+        $this->assertSame('15/09/2022', $joueurDetails->getDateValidation()?->format('d/m/Y'));
         $this->assertSame(false, $joueurDetails->isClasseNational());
         $this->assertSame('M1', $joueurDetails->getCategorie());
         $this->assertSame(null, $joueurDetails->getClassementNational());

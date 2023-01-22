@@ -12,24 +12,24 @@ final class JoueurDetails
         private readonly string $licence,
         private readonly string $nom,
         private readonly string $prenom,
-        private ?string $typeLicence,
-        private readonly ?\DateTime $dateValidation,
+        private string|null $typeLicence,
+        private readonly \DateTime|null $dateValidation,
         private readonly string $numClub,
         private readonly string $nomClub,
         private readonly bool $isHomme,
         private readonly string $categorie,
         // TODO: Créer une Enum pour convertir en libellés plus explicites
-        private readonly float $pointDebutSaison,
+        private readonly float|null $pointDebutSaison,
         private readonly float $pointsLicence,
-        private readonly float $pointsMensuel,
-        private readonly float $pointsMensuelAnciens,
+        private readonly float|null $pointsMensuel,
+        private readonly float|null $pointsMensuelAnciens,
         private readonly bool $isClasseNational,
-        private readonly ?int $classementNational,
+        private readonly int|null $classementNational,
         private string $nationalite,
-        private readonly ?\DateTime $dateMutation,
-        private readonly ?string $diplomeArbitre,
-        private readonly ?string $diplomeJugeArbitre,
-        private readonly ?string $diplomeTechnique,
+        private readonly \DateTime|null $dateMutation,
+        private readonly string|null $diplomeArbitre,
+        private readonly string|null $diplomeJugeArbitre,
+        private readonly string|null $diplomeTechnique,
     ) {
         $this->setNationalite();
         $this->setTypeLicence();
@@ -96,17 +96,17 @@ final class JoueurDetails
         return $this->nationalite;
     }
 
-    public function getDateValidation(): \DateTime
+    public function getDateValidation(): \DateTime|null
     {
         return $this->dateValidation;
     }
 
-    public function getDateMutation(): ?\DateTime
+    public function getDateMutation(): \DateTime|null
     {
         return $this->dateMutation;
     }
 
-    public function getTypeLicence(): string
+    public function getTypeLicence(): string|null
     {
         return $this->typeLicence;
     }
@@ -151,7 +151,7 @@ final class JoueurDetails
         return $this->categorie;
     }
 
-    public function getPointDebutSaison(): float
+    public function getPointDebutSaison(): float|null
     {
         return $this->pointDebutSaison;
     }
@@ -161,12 +161,12 @@ final class JoueurDetails
         return $this->pointsLicence;
     }
 
-    public function getPointsMensuel(): float
+    public function getPointsMensuel(): float|null
     {
         return $this->pointsMensuel;
     }
 
-    public function getPointsMensuelAnciens(): float
+    public function getPointsMensuelAnciens(): float|null
     {
         return $this->pointsMensuelAnciens;
     }

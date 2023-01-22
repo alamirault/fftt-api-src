@@ -28,7 +28,7 @@ final class FFTTClient implements FFTTClientInterface
             throw new InvalidRequestException($uri, $response->getStatusCode(), $response->getBody()->getContents());
         } catch (ServerException $se) {
             $response = $se->getResponse();
-            throw new InternalServerErrorException($uri, $response->getStatusCode(), $response->getBody()->getContents());
+            throw new InternalServerErrorException($uri, $response?->getStatusCode(), $response?->getBody()?->getContents());
         }
 
         if (array_key_exists('0', $result)) {
