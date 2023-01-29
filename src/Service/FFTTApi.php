@@ -140,9 +140,12 @@ final class FFTTApi
         return $this->listJoueurOperation->listJoueursByNom($nom, $prenom);
     }
 
-    public function retrieveJoueurDetails(string $licenceId): JoueurDetails
+    /**
+     * @return JoueurDetails|array<JoueurDetails>
+     */
+    public function retrieveJoueurDetails(string $licenceId, ?string $clubId = null): JoueurDetails|array
     {
-        return $this->retrieveJoueurDetailsOperation->retrieveJoueurDetails($licenceId);
+        return $this->retrieveJoueurDetailsOperation->retrieveJoueurDetails($licenceId, $clubId);
     }
 
     public function retrieveClassement(string $licenceId): Classement
