@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<erreurs>
+    <code>400</code>
+    <erreur>Vous devez remplir le parametre licence ou club</erreur>
+</erreurs>
