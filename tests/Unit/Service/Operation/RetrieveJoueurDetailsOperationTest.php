@@ -51,10 +51,10 @@ final class RetrieveJoueurDetailsOperationTest extends TestCase
         $this->assertSame('Alexis', $joueurDetails->getPrenom());
         $this->assertSame('11340010', $joueurDetails->getNumClub());
         $this->assertSame('MONTPELLIER TT', $joueurDetails->getNomClub());
-        $this->assertSame(true, $joueurDetails->isHomme());
+        $this->assertTrue($joueurDetails->isHomme());
         $this->assertSame(TypelicenceEnum::Traditionnelle, $joueurDetails->getTypeLicence());
         $this->assertSame('01/08/2022', $joueurDetails->getDateValidation()?->format('d/m/Y'));
-        $this->assertSame(true, $joueurDetails->isClasseNational());
+        $this->assertTrue($joueurDetails->isClasseNational());
         $this->assertSame('S', $joueurDetails->getCategorie());
         $this->assertSame(5, $joueurDetails->getClassementNational());
         $this->assertSame(28.0, $joueurDetails->getPointsMensuel());
@@ -63,9 +63,9 @@ final class RetrieveJoueurDetailsOperationTest extends TestCase
         $this->assertSame(3508.0, $joueurDetails->getPointsLicence());
         $this->assertSame(NationaliteEnum::Française, $joueurDetails->getNationalite());
         $this->assertSame('21/02/2022', $joueurDetails->getDateMutation()?->format('d/m/Y'));
-        $this->assertSame(null, $joueurDetails->getDiplomeArbitre());
-        $this->assertSame(null, $joueurDetails->getDiplomeJugeArbitre());
-        $this->assertSame(null, $joueurDetails->getDiplomeTechnique());
+        $this->assertNull($joueurDetails->getDiplomeArbitre());
+        $this->assertNull($joueurDetails->getDiplomeJugeArbitre());
+        $this->assertNull($joueurDetails->getDiplomeTechnique());
     }
 
     /**
@@ -98,21 +98,21 @@ final class RetrieveJoueurDetailsOperationTest extends TestCase
         $this->assertSame('Sébastien', $joueurDetails->getPrenom());
         $this->assertSame('08950978', $joueurDetails->getNumClub());
         $this->assertSame('EAUBONNE CSM TT', $joueurDetails->getNomClub());
-        $this->assertSame(true, $joueurDetails->isHomme());
+        $this->assertTrue($joueurDetails->isHomme());
         $this->assertSame(TypelicenceEnum::Traditionnelle, $joueurDetails->getTypeLicence());
         $this->assertSame('18/09/2022', $joueurDetails->getDateValidation()?->format('d/m/Y'));
-        $this->assertSame(false, $joueurDetails->isClasseNational());
+        $this->assertFalse($joueurDetails->isClasseNational());
         $this->assertSame('V1', $joueurDetails->getCategorie());
-        $this->assertSame(null, $joueurDetails->getClassementNational());
+        $this->assertNull($joueurDetails->getClassementNational());
         $this->assertSame(807.0, $joueurDetails->getPointsMensuel());
         $this->assertSame(775.25, $joueurDetails->getPointsMensuelAnciens());
         $this->assertSame(710.0, $joueurDetails->getPointDebutSaison());
         $this->assertSame(807.0, $joueurDetails->getPointsLicence());
         $this->assertSame(NationaliteEnum::Française, $joueurDetails->getNationalite());
         $this->assertSame('01/07/2022', $joueurDetails->getDateMutation()?->format('d/m/Y'));
-        $this->assertSame(null, $joueurDetails->getDiplomeArbitre());
-        $this->assertSame(null, $joueurDetails->getDiplomeJugeArbitre());
-        $this->assertSame(null, $joueurDetails->getDiplomeTechnique());
+        $this->assertNull($joueurDetails->getDiplomeArbitre());
+        $this->assertNull($joueurDetails->getDiplomeJugeArbitre());
+        $this->assertNull($joueurDetails->getDiplomeTechnique());
     }
 
     /**
@@ -273,21 +273,21 @@ final class RetrieveJoueurDetailsOperationTest extends TestCase
         $this->assertSame('Elsa', $joueurDetails->getPrenom());
         $this->assertSame('08951331', $joueurDetails->getNumClub());
         $this->assertSame('LA FRETTE ESFTT', $joueurDetails->getNomClub());
-        $this->assertSame(false, $joueurDetails->isHomme());
+        $this->assertFalse($joueurDetails->isHomme());
         $this->assertSame(TypeLicenceEnum::Promotionnelle, $joueurDetails->getTypeLicence());
         $this->assertSame('15/09/2022', $joueurDetails->getDateValidation()?->format('d/m/Y'));
-        $this->assertSame(false, $joueurDetails->isClasseNational());
+        $this->assertFalse($joueurDetails->isClasseNational());
         $this->assertSame('M1', $joueurDetails->getCategorie());
-        $this->assertSame(null, $joueurDetails->getClassementNational());
+        $this->assertNull($joueurDetails->getClassementNational());
         $this->assertSame(500.0, $joueurDetails->getPointsMensuel());
         $this->assertSame(500.0, $joueurDetails->getPointsMensuelAnciens());
         $this->assertSame(500.0, $joueurDetails->getPointDebutSaison());
         $this->assertSame(500.0, $joueurDetails->getPointsLicence());
         $this->assertSame(NationaliteEnum::Française, $joueurDetails->getNationalite());
-        $this->assertSame(null, $joueurDetails->getDateMutation());
-        $this->assertSame(null, $joueurDetails->getDiplomeArbitre());
-        $this->assertSame(null, $joueurDetails->getDiplomeJugeArbitre());
-        $this->assertSame(null, $joueurDetails->getDiplomeTechnique());
+        $this->assertNull($joueurDetails->getDateMutation());
+        $this->assertNull($joueurDetails->getDiplomeArbitre());
+        $this->assertNull($joueurDetails->getDiplomeJugeArbitre());
+        $this->assertNull($joueurDetails->getDiplomeTechnique());
     }
 
     /**
