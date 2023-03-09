@@ -141,7 +141,7 @@ final class RencontreDetailsFactory
         foreach ($data as $joueurData) {
             $nomPrenom = $joueurData[0];
             [$nom, $prenom] = $this->nomPrenomExtractor->extractNomPrenom($nomPrenom);
-            $joueurs[$nomPrenom] = $this->formatJoueur($prenom, $nom, $joueurData[1], $joueursClub);
+            $joueurs[$this->nomPrenomExtractor->uniqueMultipleSpaces($nomPrenom)] = $this->formatJoueur($prenom, $nom, $joueurData[1], $joueursClub);
         }
 
         return $joueurs;
@@ -157,7 +157,9 @@ final class RencontreDetailsFactory
         }
 
         foreach ($joueursClub as $joueurClub) {
-            if ($joueurClub->getNom() === Accentuation::remove($nom) && $joueurClub->getPrenom() === $prenom) {
+            $nomJoueurClub = $this->nomPrenomExtractor->uniqueMultipleSpaces($joueurClub->getNom());
+            $prenomJoueurClub = $this->nomPrenomExtractor->uniqueMultipleSpaces($joueurClub->getPrenom());
+            if ($nomJoueurClub === Accentuation::remove($nom) && $prenomJoueurClub === $prenom) {
                 $return = preg_match('/^(N°[0-9]*- ){0,1}(?<sexe>[A-Z]{1}) (?<points>[0-9]+)pts$/', $points, $result);
 
                 if (false === $return) {
@@ -167,8 +169,8 @@ final class RencontreDetailsFactory
                 $playerPoints = $result['points'];
 
                 return new Joueur(
-                    $joueurClub->getNom(),
-                    $joueurClub->getPrenom(),
+                    $nomJoueurClub,
+                    $prenomJoueurClub,
                     $joueurClub->getLicence(),
                     (int) $playerPoints,
                     $sexe
@@ -191,10 +193,10 @@ final class RencontreDetailsFactory
             $setDetails = explode(' ', $partieData['detail']);
 
             /** @var string $adverssaireA */
-            $adverssaireA = [] === $partieData['ja'] ? 'Absent Absent' : $partieData['ja'];
+            $adverssaireA = 'array' === gettype($partieData['ja']) ? 'Absent Absent' : $this->nomPrenomExtractor->uniqueMultipleSpaces($partieData['ja']);
 
             /** @var string $adverssaireB */
-            $adverssaireB = [] === $partieData['jb'] ? 'Absent Absent' : $partieData['jb'];
+            $adverssaireB = 'array' === gettype($partieData['jb']) ? 'Absent Absent' : $this->nomPrenomExtractor->uniqueMultipleSpaces($partieData['jb']);
 
             $parties[] = new Partie(
                 $adverssaireA,

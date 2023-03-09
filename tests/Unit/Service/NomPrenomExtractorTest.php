@@ -65,5 +65,65 @@ final class NomPrenomExtractorTest extends TestCase
             'GARBANI - LECOURT NEVEU',
             'Dimitri - Sébastien',
         ];
+
+        yield [
+            'AIT EL BACHA Yacine',
+            'AIT EL BACHA',
+            'Yacine',
+        ];
+
+        yield [
+            'ABBAS Abdel-Jalil',
+            'ABBAS',
+            'Abdel-Jalil',
+        ];
+
+        yield [
+            "DE L'EPREVIER Domitille",
+            "DE L'EPREVIER",
+            'Domitille',
+        ];
+
+        yield [
+            'YAO Attien Henri',
+            'YAO',
+            'Attien Henri',
+        ];
+
+        yield [
+            'MARIANNI--SAMSON Mael',
+            'MARIANNI-SAMSON',
+            'Mael',
+        ];
+
+        yield [
+            'NDJOM BASSANAGA Moïse',
+            'NDJOM BASSANAGA',
+            'Moïse',
+        ];
+
+        yield [
+            "DE L  'EPREVIER Domitille",
+            "DE L 'EPREVIER",
+            'Domitille',
+        ];
+
+        yield [
+            "DE L'EPREVIER PAVRON Domitille",
+            "DE L'EPREVIER PAVRON",
+            'Domitille',
+        ];
+
+        yield [
+            "DE L'EPREVIER PAVRON-SEC Domitille",
+            "DE L'EPREVIER PAVRON-SEC",
+            'Domitille',
+        ];
+
+        yield [
+            "DE L'EPREVIER PAVRON  - SEC Domitille",
+            "DE L'EPREVIER PAVRON - SEC",
+            'Domitille',
+        ];
     }
 }
