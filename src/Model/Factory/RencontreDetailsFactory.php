@@ -141,7 +141,7 @@ final class RencontreDetailsFactory
         foreach ($data as $joueurData) {
             $nomPrenom = $joueurData[0];
             [$nom, $prenom] = $this->nomPrenomExtractor->extractNomPrenom($nomPrenom);
-            $joueurs[$this->nomPrenomExtractor->uniqueMultipleSpaces($nomPrenom)] = $this->formatJoueur($prenom, $nom, $joueurData[1], $joueursClub);
+            $joueurs[$this->nomPrenomExtractor->removeSeparatorsDuplication($nomPrenom)] = $this->formatJoueur($prenom, $nom, $joueurData[1], $joueursClub);
         }
 
         return $joueurs;
@@ -157,8 +157,8 @@ final class RencontreDetailsFactory
         }
 
         foreach ($joueursClub as $joueurClub) {
-            $nomJoueurClub = $this->nomPrenomExtractor->uniqueMultipleSpaces($joueurClub->getNom());
-            $prenomJoueurClub = $this->nomPrenomExtractor->uniqueMultipleSpaces($joueurClub->getPrenom());
+            $nomJoueurClub = $this->nomPrenomExtractor->removeSeparatorsDuplication($joueurClub->getNom());
+            $prenomJoueurClub = $this->nomPrenomExtractor->removeSeparatorsDuplication($joueurClub->getPrenom());
             if ($nomJoueurClub === Accentuation::remove($nom) && $prenomJoueurClub === $prenom) {
                 $return = preg_match('/^(N°[0-9]*- ){0,1}(?<sexe>[A-Z]{1}) (?<points>[0-9]+)pts$/', $points, $result);
 
@@ -193,10 +193,10 @@ final class RencontreDetailsFactory
             $setDetails = explode(' ', $partieData['detail']);
 
             /** @var string $adverssaireA */
-            $adverssaireA = 'array' === gettype($partieData['ja']) ? 'Absent Absent' : $this->nomPrenomExtractor->uniqueMultipleSpaces($partieData['ja']);
+            $adverssaireA = is_array($partieData['ja']) ? 'Absent Absent' : $this->nomPrenomExtractor->removeSeparatorsDuplication($partieData['ja']);
 
             /** @var string $adverssaireB */
-            $adverssaireB = 'array' === gettype($partieData['jb']) ? 'Absent Absent' : $this->nomPrenomExtractor->uniqueMultipleSpaces($partieData['jb']);
+            $adverssaireB = is_array($partieData['jb']) ? 'Absent Absent' : $this->nomPrenomExtractor->removeSeparatorsDuplication($partieData['jb']);
 
             $parties[] = new Partie(
                 $adverssaireA,

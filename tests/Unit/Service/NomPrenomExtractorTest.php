@@ -67,15 +67,15 @@ final class NomPrenomExtractorTest extends TestCase
         ];
 
         yield [
-            'AIT EL BACHA Yacine',
-            'AIT EL BACHA',
+            'AITÕ EL BACHA Yacine',
+            'AITÕ EL BACHA',
             'Yacine',
         ];
 
         yield [
-            'ABBAS Abdel-Jalil',
-            'ABBAS',
-            'Abdel-Jalil',
+            'ÂBBÄS Ãbdel-Jælil',
+            'ÂBBÄS',
+            'Ãbdel-Jælil',
         ];
 
         yield [
@@ -85,21 +85,21 @@ final class NomPrenomExtractorTest extends TestCase
         ];
 
         yield [
-            'YAO Attien Henri',
-            'YAO',
+            'ÆYAO --  ÆYAOÈ Attien Henri',
+            'ÆYAO - ÆYAOÈ',
             'Attien Henri',
         ];
 
         yield [
-            'MARIANNI--SAMSON Mael',
-            'MARIANNI-SAMSON',
-            'Mael',
+            'MARIÀNNI--SAMSON Mæl',
+            'MARIÀNNI-SAMSON',
+            'Mæl',
         ];
 
         yield [
-            'NDJOM BASSANAGA Moïse',
+            'NDJOM BASSANAGA Moïse Çéliñó',
             'NDJOM BASSANAGA',
-            'Moïse',
+            'Moïse Çéliñó',
         ];
 
         yield [

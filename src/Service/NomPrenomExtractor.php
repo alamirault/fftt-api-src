@@ -6,7 +6,7 @@ final class NomPrenomExtractor implements NomPrenomExtractorInterface
 {
     public function extractNomPrenom(string $raw): array
     {
-        $raw = $this->uniqueMultipleSpaces($raw);
+        $raw = $this->removeSeparatorsDuplication($raw);
         // On extrait le nom et le prénom
         $return = preg_match("/^(?<nom>[A-ZÀ-Ý]+(?:(?:[\s'\-])*[A-ZÀ-Ý]+)*)\s(?<prenom>[A-ZÀ-Ý][a-zà-ÿ]*(?:(?:[\s'\-])*[A-ZÀ-Ý][a-zà-ÿ]*)*)$/", $raw, $result);
 
@@ -18,11 +18,9 @@ final class NomPrenomExtractor implements NomPrenomExtractorInterface
     }
 
     /**
-     * Permet de supprimer des espaces multiples.
-     *
-     * @param string $raw
+     * Permet de supprimer des séparateurs (espaces, tirets) dupliqués.
      */
-    public function uniqueMultipleSpaces($raw): string
+    public function removeSeparatorsDuplication(string $raw): string
     {
         return preg_replace(['/\s+/', '/-+/'], [' ', '-'], $raw) ?? '';
     }
