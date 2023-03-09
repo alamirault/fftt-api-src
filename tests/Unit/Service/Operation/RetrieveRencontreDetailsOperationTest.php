@@ -138,7 +138,5 @@ final class RetrieveRencontreDetailsOperationTest extends TestCase
         $this->assertEquals(new Partie('GARBANI Fabrice', 'MACCHIETTI Jean', 2, 1, ['01', '07', '02']), $result->getParties()[11]);
         $this->assertEquals(new Partie('GARBANI - LECOURT Dimitri', 'DESROCHES Damien', 1, 2, ['-08', '-08', '-10']), $result->getParties()[12]);
         $this->assertEquals(new Partie('MARIANNI-SAMSON Emmanuel', 'HARDY Mael', 2, 1, ['06', '05', '11']), $result->getParties()[13]);
-
-        // TODO Ii WO = liste joueurs 'absent absent' en ISO ?
     }
 }
