@@ -115,9 +115,9 @@ final class NomPrenomExtractorTest extends TestCase
         ];
 
         yield [
-            "DE L'EPREVIER PAVRON-SEC Domitille",
+            "DE L'EPREVIER PAVRON-SEC Domìtïlle",
             "DE L'EPREVIER PAVRON-SEC",
-            'Domitille',
+            'Domìtïlle',
         ];
 
         yield [
