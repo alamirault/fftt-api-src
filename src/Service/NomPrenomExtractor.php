@@ -6,18 +6,17 @@ final class NomPrenomExtractor implements NomPrenomExtractorInterface
 {
     public function extractNomPrenom(string $raw): array
     {
-        $nom = [];
-        $prenom = [];
-        $words = explode(' ', $raw);
+        $patterns = ['/\s+/', '/-+/'];
+        $replacements = [' ', '-'];
+        // On remplace les N espaces et tirets d'affilée
+        $raw = preg_replace($patterns, $replacements, $raw) ?? '';
+        // On extrait le nom et le prénom
+        $return = preg_match("/^(?<nom>[A-ZÀ-Ý]+(?:(?:[\s'\-])*[A-Z]+)*)\s(?<prenom>[A-ZÀ-Ý][a-zà-ÿ]*(?:(?:[\s'\-])*[A-ZÀ-Ý][a-zà-ÿ]*)*)$/", $raw, $result);
 
-        foreach ($words as $word) {
-            $lastChar = substr($word, -1);
-            mb_strtolower($lastChar, 'UTF-8') === $lastChar ? $prenom[] = $word : $nom[] = $word;
-        }
-
-        return [
-            implode(' ', $nom),
-            implode(' ', $prenom),
+        return 1 !== $return ? ['', ''] :
+        [
+            $result['nom'],
+            $result['prenom'],
         ];
     }
 }

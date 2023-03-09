@@ -41,5 +41,29 @@ final class NomPrenomExtractorTest extends TestCase
             'DA COSTA TEIXEIRA',
             'Ana',
         ];
+
+        yield [
+            'AMOR   QUOINTEAU Erwan',
+            'AMOR QUOINTEAU',
+            'Erwan',
+        ];
+
+        yield [
+            'GARBANI  - LECOURT Dimitri',
+            'GARBANI - LECOURT',
+            'Dimitri',
+        ];
+
+        yield [
+            'GARBANI  - LECOURT NEVEU Dimitri-Sébastien',
+            'GARBANI - LECOURT NEVEU',
+            'Dimitri-Sébastien',
+        ];
+
+        yield [
+            'GARBANI  - LECOURT NEVEU Dimitri - Sébastien',
+            'GARBANI - LECOURT NEVEU',
+            'Dimitri - Sébastien',
+        ];
     }
 }

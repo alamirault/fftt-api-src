@@ -3,6 +3,7 @@
 namespace Alamirault\FFTTApi\Tests\Unit\Service\Operation;
 
 use Alamirault\FFTTApi\Model\Factory\RencontreDetailsFactory;
+use Alamirault\FFTTApi\Model\Rencontre\Joueur;
 use Alamirault\FFTTApi\Model\Rencontre\RencontreDetails;
 use Alamirault\FFTTApi\Service\FFTTClient;
 use Alamirault\FFTTApi\Service\NomPrenomExtractor;
@@ -26,11 +27,11 @@ final class RetrieveRencontreDetailsOperationTest extends TestCase
     public function testRetrieveRencontreDetailsByLien(): void
     {
         /** @var string $responseContentResult */
-        $responseContentResult = file_get_contents(__DIR__.'/../fixtures/RetrieveRencontreDetailsOperationTest/rencontres_details_by_lien.xml');
+        $responseContentResult = file_get_contents(__DIR__.'/../fixtures/RetrieveRencontreDetailsOperationTest/test_1/rencontres_details_by_lien.xml');
         /** @var string $responseContentJoueursEquA */
-        $responseContentJoueursEquA = file_get_contents(__DIR__.'/../fixtures/RetrieveRencontreDetailsOperationTest/liste_joueurs_equ_a.xml');
+        $responseContentJoueursEquA = file_get_contents(__DIR__.'/../fixtures/RetrieveRencontreDetailsOperationTest/test_1/liste_joueurs_equ_a.xml');
         /** @var string $responseContentJoueursEquB */
-        $responseContentJoueursEquB = file_get_contents(__DIR__.'/../fixtures/RetrieveRencontreDetailsOperationTest/liste_joueurs_equ_b.xml');
+        $responseContentJoueursEquB = file_get_contents(__DIR__.'/../fixtures/RetrieveRencontreDetailsOperationTest/test_1/liste_joueurs_equ_b.xml');
         $mock = new MockHandlerStub([
             new Response(200, [
                 'content-type' => ['text/html; charset=UTF-8'],
@@ -62,5 +63,62 @@ final class RetrieveRencontreDetailsOperationTest extends TestCase
         $this->assertEquals('FRANCONVILLE (1)', $result->getNomEquipeB());
         $this->assertEquals(88, $result->getScoreEquipeA());
         $this->assertEquals(74, $result->getScoreEquipeB());
+    }
+
+    /**
+     * @covers ::retrieveRencontreDetailsByLien
+     */
+    public function testRetrieveRencontreDetailsByLienWeirdFormattedPlayersNames(): void
+    {
+        /** @var string $responseContentResult */
+        $responseContentResult = file_get_contents(__DIR__.'/../fixtures/RetrieveRencontreDetailsOperationTest/test_2/rencontres_details_by_lien.xml');
+        /** @var string $responseContentJoueursEquA */
+        $responseContentJoueursEquA = file_get_contents(__DIR__.'/../fixtures/RetrieveRencontreDetailsOperationTest/test_2/liste_joueurs_equ_a.xml');
+        /** @var string $responseContentJoueursEquB */
+        $responseContentJoueursEquB = file_get_contents(__DIR__.'/../fixtures/RetrieveRencontreDetailsOperationTest/test_2/liste_joueurs_equ_b.xml');
+        $mock = new MockHandlerStub([
+            new Response(200, [
+                'content-type' => ['text/html; charset=UTF-8'],
+            ], $responseContentResult),
+            new Response(200, [
+                'content-type' => ['text/html; charset=UTF-8'],
+            ], $responseContentJoueursEquA),
+            new Response(200, [
+                'content-type' => ['text/html; charset=UTF-8'],
+            ], $responseContentJoueursEquB),
+        ]);
+
+        $handlerStack = HandlerStack::create($mock);
+        $client = new Client(['handler' => $handlerStack]);
+        $FFTTClient = new FFTTClient($client, new UriGenerator('foo', 'bar'));
+        $arrayWrapper = new ArrayWrapper();
+        $listJoueurOperation = new ListJoueurOperation($FFTTClient, $arrayWrapper);
+        $nomPrenomExtractor = new NomPrenomExtractor();
+        $rencontreDetailsFactory = new RencontreDetailsFactory($nomPrenomExtractor, $listJoueurOperation);
+        $operation = new RetrieveRencontreDetailsOperation($FFTTClient, $rencontreDetailsFactory);
+
+        /** @var RencontreDetails $result */
+        $result = $operation->retrieveRencontreDetailsByLien('renc_id=1850692&is_retour=0&phase=2&res_1=25&res_2=17&equip_1=BESSANCOURT+3&equip_2=MONTSOULT+3&equip_id1=8702&equip_id2=9691&clubnum_1=08951366&clubnum_2=08950531', '08951366', '08950531');
+        $this->assertCount(4, $result->getJoueursA());
+        $this->assertCount(4, $result->getJoueursB());
+        $this->assertEquals(7.0, $result->getExpectedScoreEquipeA());
+        $this->assertEquals(7.0, $result->getExpectedScoreEquipeB());
+        $this->assertEquals('BESSANCOURT 3', $result->getNomEquipeA());
+        $this->assertEquals('MONTSOULT 3', $result->getNomEquipeB());
+        $this->assertEquals(25, $result->getScoreEquipeA());
+        $this->assertEquals(17, $result->getScoreEquipeB());
+
+        $joueursA = array_values($result->getJoueursA());
+        $joueursB = array_values($result->getJoueursB());
+        // var_dump($result->getJoueursA());
+        // var_dump($result->getJoueursB());
+        $this->assertEquals(new Joueur('AMOR QUOINTEAU', 'Erwan', '9536698', 773, 'M'), $joueursA[0]);
+        $this->assertEquals(new Joueur('BARILLE', 'Emmanuel', '9233469', 723, 'M'), $joueursA[1]);
+        $this->assertEquals(new Joueur('GARBANI', 'Fabrice', '9521619', 819, 'M'), $joueursA[2]);
+        $this->assertEquals(new Joueur('GARBANI - LECOURT', 'Dimitri', '08951366', 633, 'M'), $joueursA[3]);
+        $this->assertEquals(new Joueur('MACCHIETTI', 'Jean', '953581', 543, 'M'), $joueursB[0]);
+        $this->assertEquals(new Joueur('DESROCHES', 'Damien', '9541048', 500, 'M'), $joueursB[1]);
+        $this->assertEquals(new Joueur('BERNET', 'Loris', '9536698', 535, 'M'), $joueursB[2]);
+        $this->assertEquals(new Joueur('HARDY', 'Mael', '9537596', 582, 'M'), $joueursB[3]);
     }
 }
