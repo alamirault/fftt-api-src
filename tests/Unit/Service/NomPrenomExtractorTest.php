@@ -41,5 +41,89 @@ final class NomPrenomExtractorTest extends TestCase
             'DA COSTA TEIXEIRA',
             'Ana',
         ];
+
+        yield [
+            'AMOR   QUOINTEAU Erwan',
+            'AMOR QUOINTEAU',
+            'Erwan',
+        ];
+
+        yield [
+            'GARBANI  - LECOURT Dimitri',
+            'GARBANI - LECOURT',
+            'Dimitri',
+        ];
+
+        yield [
+            'GARBANI  - LECOURT NEVEU Dimitri-Sébastien',
+            'GARBANI - LECOURT NEVEU',
+            'Dimitri-Sébastien',
+        ];
+
+        yield [
+            'GARBANI  - LECOURT NEVEU Dimitri - Sébastien',
+            'GARBANI - LECOURT NEVEU',
+            'Dimitri - Sébastien',
+        ];
+
+        yield [
+            'AITÕ EL BACHA Yacine',
+            'AITÕ EL BACHA',
+            'Yacine',
+        ];
+
+        yield [
+            'ÂBBÄS Ãbdel-Jælil',
+            'ÂBBÄS',
+            'Ãbdel-Jælil',
+        ];
+
+        yield [
+            "DE L'EPREVIER Domitille",
+            "DE L'EPREVIER",
+            'Domitille',
+        ];
+
+        yield [
+            'ÆYAO --  ÆYAOÈ Attien Henri',
+            'ÆYAO - ÆYAOÈ',
+            'Attien Henri',
+        ];
+
+        yield [
+            'MARIÀNNI--SAMSON Mæl',
+            'MARIÀNNI-SAMSON',
+            'Mæl',
+        ];
+
+        yield [
+            'NDJOM BASSANAGA Moïse Çéliñó',
+            'NDJOM BASSANAGA',
+            'Moïse Çéliñó',
+        ];
+
+        yield [
+            "DE L  'EPREVIER Domitille",
+            "DE L 'EPREVIER",
+            'Domitille',
+        ];
+
+        yield [
+            "DE L'EPREVIER PAVRON Domitille",
+            "DE L'EPREVIER PAVRON",
+            'Domitille',
+        ];
+
+        yield [
+            "DE L'EPREVIER PAVRON-SEC Domìtïlle",
+            "DE L'EPREVIER PAVRON-SEC",
+            'Domìtïlle',
+        ];
+
+        yield [
+            "DE L'EPREVIER PAVRON  - SEC Domitille",
+            "DE L'EPREVIER PAVRON - SEC",
+            'Domitille',
+        ];
     }
 }
