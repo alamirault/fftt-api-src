@@ -73,13 +73,13 @@ final class FFTTApi
         $clubFactory = new ClubFactory();
         $this->listClubOperation = new ListClubOperation($FFTTClient, $clubFactory, $arrayWrapper);
 
+        $nomPrenomExtractor = new NomPrenomExtractor();
         $this->retrieveClubDetailsOperation = new RetrieveClubDetailsOperation($FFTTClient, $this->listClubOperation);
-        $this->listJoueurOperation = new ListJoueurOperation($FFTTClient, $arrayWrapper);
+        $this->listJoueurOperation = new ListJoueurOperation($FFTTClient, $arrayWrapper, $nomPrenomExtractor);
         $this->retrieveJoueurDetailsOperation = new RetrieveJoueurDetailsOperation($FFTTClient);
         $this->retrieveClassementOperation = new RetrieveClassementOperation($FFTTClient);
         $this->listHistoriqueOperation = new ListHistoriqueOperation($FFTTClient, $arrayWrapper);
 
-        $nomPrenomExtractor = new NomPrenomExtractor();
         $this->listPartieOperation = new ListPartieOperation($FFTTClient, $arrayWrapper, $nomPrenomExtractor);
 
         $pointCalculator = new PointCalculator();

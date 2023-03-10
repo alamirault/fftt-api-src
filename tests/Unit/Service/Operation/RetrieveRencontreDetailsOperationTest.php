@@ -48,10 +48,8 @@ final class RetrieveRencontreDetailsOperationTest extends TestCase
         $handlerStack = HandlerStack::create($mock);
         $client = new Client(['handler' => $handlerStack]);
         $FFTTClient = new FFTTClient($client, new UriGenerator('foo', 'bar'));
-        $arrayWrapper = new ArrayWrapper();
-        $listJoueurOperation = new ListJoueurOperation($FFTTClient, $arrayWrapper);
-        $nomPrenomExtractor = new NomPrenomExtractor();
-        $rencontreDetailsFactory = new RencontreDetailsFactory($nomPrenomExtractor, $listJoueurOperation);
+        $listJoueurOperation = new ListJoueurOperation($FFTTClient, new ArrayWrapper(), new NomPrenomExtractor());
+        $rencontreDetailsFactory = new RencontreDetailsFactory(new NomPrenomExtractor(), $listJoueurOperation);
         $operation = new RetrieveRencontreDetailsOperation($FFTTClient, $rencontreDetailsFactory);
 
         /** @var RencontreDetails $result */
@@ -92,10 +90,8 @@ final class RetrieveRencontreDetailsOperationTest extends TestCase
         $handlerStack = HandlerStack::create($mock);
         $client = new Client(['handler' => $handlerStack]);
         $FFTTClient = new FFTTClient($client, new UriGenerator('foo', 'bar'));
-        $arrayWrapper = new ArrayWrapper();
-        $listJoueurOperation = new ListJoueurOperation($FFTTClient, $arrayWrapper);
-        $nomPrenomExtractor = new NomPrenomExtractor();
-        $rencontreDetailsFactory = new RencontreDetailsFactory($nomPrenomExtractor, $listJoueurOperation);
+        $listJoueurOperation = new ListJoueurOperation($FFTTClient, new ArrayWrapper(), new NomPrenomExtractor());
+        $rencontreDetailsFactory = new RencontreDetailsFactory(new NomPrenomExtractor(), $listJoueurOperation);
         $operation = new RetrieveRencontreDetailsOperation($FFTTClient, $rencontreDetailsFactory);
 
         /** @var RencontreDetails $result */

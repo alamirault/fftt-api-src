@@ -7,12 +7,14 @@ use Alamirault\FFTTApi\Exception\ClubNotFoundException;
 use Alamirault\FFTTApi\Exception\InvalidResponseException;
 use Alamirault\FFTTApi\Model\Joueur;
 use Alamirault\FFTTApi\Service\FFTTClientInterface;
+use Alamirault\FFTTApi\Service\NomPrenomExtractorInterface;
 
 final class ListJoueurOperation
 {
     public function __construct(
         private readonly FFTTClientInterface $client,
         private readonly ArrayWrapper $arrayWrapper,
+        private readonly NomPrenomExtractorInterface $nomPrenomExtractor,
     ) {}
 
     /**
@@ -36,9 +38,12 @@ final class ListJoueurOperation
                 $joueur['licence'],
                 $joueur['nclub'],
                 $joueur['club'],
-                $joueur['nom'],
-                $joueur['prenom'],
-                $joueur['points']);
+                $this->nomPrenomExtractor->removeSeparatorsDuplication(trim($joueur['nom'])),
+                $this->nomPrenomExtractor->removeSeparatorsDuplication(trim($joueur['prenom'])),
+                !is_array($joueur['points']) ? (int) $joueur['points'] : null,
+                !is_array($joueur['echelon']) ? $joueur['echelon'] : null,
+                !is_array($joueur['place']) ? (int) $joueur['place'] : null,
+            );
             $result[] = $realJoueur;
         }
 
@@ -69,7 +74,9 @@ final class ListJoueurOperation
                 $joueur['club'],
                 $joueur['nom'],
                 $joueur['prenom'],
-                $joueur['clast']);
+                $joueur['clast'] ? (int) $joueur['clast'] : null,
+                null,
+                null, );
             $result[] = $realJoueur;
         }
 

@@ -157,9 +157,7 @@ final class RencontreDetailsFactory
         }
 
         foreach ($joueursClub as $joueurClub) {
-            $nomJoueurClub = $this->nomPrenomExtractor->removeSeparatorsDuplication($joueurClub->getNom());
-            $prenomJoueurClub = $this->nomPrenomExtractor->removeSeparatorsDuplication($joueurClub->getPrenom());
-            if ($nomJoueurClub === Accentuation::remove($nom) && $prenomJoueurClub === $prenom) {
+            if ($joueurClub->getNom() === Accentuation::remove($nom) && $joueurClub->getPrenom() === $prenom) {
                 $return = preg_match('/^(N°[0-9]*- ){0,1}(?<sexe>[A-Z]{1}) (?<points>[0-9]+)pts$/', $points, $result);
 
                 if (false === $return) {
@@ -169,8 +167,8 @@ final class RencontreDetailsFactory
                 $playerPoints = $result['points'];
 
                 return new Joueur(
-                    $nomJoueurClub,
-                    $prenomJoueurClub,
+                    $joueurClub->getNom(),
+                    $joueurClub->getPrenom(),
                     $joueurClub->getLicence(),
                     (int) $playerPoints,
                     $sexe
@@ -192,15 +190,15 @@ final class RencontreDetailsFactory
         foreach ($data as $partieData) {
             $setDetails = explode(' ', $partieData['detail']);
 
-            /** @var string $adverssaireA */
-            $adverssaireA = is_array($partieData['ja']) ? 'Absent Absent' : $this->nomPrenomExtractor->removeSeparatorsDuplication($partieData['ja']);
+            /** @var string $adversaireA */
+            $adversaireA = is_array($partieData['ja']) ? 'Absent Absent' : $this->nomPrenomExtractor->removeSeparatorsDuplication($partieData['ja']);
 
-            /** @var string $adverssaireB */
-            $adverssaireB = is_array($partieData['jb']) ? 'Absent Absent' : $this->nomPrenomExtractor->removeSeparatorsDuplication($partieData['jb']);
+            /** @var string $adversaireB */
+            $adversaireB = is_array($partieData['jb']) ? 'Absent Absent' : $this->nomPrenomExtractor->removeSeparatorsDuplication($partieData['jb']);
 
             $parties[] = new Partie(
-                $adverssaireA,
-                $adverssaireB,
+                $adversaireA,
+                $adversaireB,
                 '-' === $partieData['scorea'] ? 0 : (int) $partieData['scorea'],
                 '-' === $partieData['scoreb'] ? 0 : (int) $partieData['scoreb'],
                 $setDetails
