@@ -2,7 +2,6 @@
 
 namespace Alamirault\FFTTApi\Model\Factory;
 
-use Accentuation\Accentuation;
 use Alamirault\FFTTApi\Model\Rencontre\Joueur;
 use Alamirault\FFTTApi\Model\Rencontre\Partie;
 use Alamirault\FFTTApi\Model\Rencontre\RencontreDetails;
@@ -157,7 +156,7 @@ final class RencontreDetailsFactory
         }
 
         foreach ($joueursClub as $joueurClub) {
-            if ($joueurClub->getNom() === Accentuation::remove($nom) && $joueurClub->getPrenom() === $prenom) {
+            if ($joueurClub->getNom() === $nom && $joueurClub->getPrenom() === $prenom) {
                 $return = preg_match('/^(N°[0-9]*- ){0,1}(?<sexe>[A-Z]{1}) (?<points>[0-9]+)pts$/', $points, $result);
 
                 if (false === $return) {

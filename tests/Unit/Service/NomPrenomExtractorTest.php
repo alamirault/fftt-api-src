@@ -125,5 +125,11 @@ final class NomPrenomExtractorTest extends TestCase
             "DE L'EPREVIER PAVRON - SEC",
             'Domitille',
         ];
+
+        yield [
+            'SÉJOURNÉ Jérémy',
+            'SÉJOURNÉ',
+            'Jérémy',
+        ];
     }
 }

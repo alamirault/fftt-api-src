@@ -115,24 +115,24 @@ final class RetrieveRencontreDetailsOperationTest extends TestCase
         $this->assertEquals(new Joueur('GARBANI', 'Fabrice', '9521619', 819, 'M'), $joueursA[2]);
         $this->assertEquals(new Joueur('GARBANI - LECOURT', 'Dimitri', '9536798', 633, 'M'), $joueursA[3]);
         $this->assertEquals(new Joueur('MACCHIETTI', 'Jean', '953581', 543, 'M'), $joueursB[0]);
-        $this->assertEquals(new Joueur('DESROCHES', 'Damien', '9541048', 500, 'M'), $joueursB[1]);
+        $this->assertEquals(new Joueur('SÉJOURNÉ', 'Jérémy', '9541048', 500, 'M'), $joueursB[1]);
         $this->assertEquals(new Joueur('BERNET', 'Loris', '9536698', 535, 'M'), $joueursB[2]);
         $this->assertEquals(new Joueur('HARDY', 'Mael', '9537596', 582, 'M'), $joueursB[3]);
 
         // Tests sur les parties
         $this->assertEquals(new Partie('AMOR QUOINTEAU Erwan', 'MACCHIETTI Jean', 2, 1, ['04', '04', '08']), $result->getParties()[0]);
-        $this->assertEquals(new Partie('MARIANNI-SAMSON Emmanuel', 'DESROCHES Damien', 2, 1, ['04', '05', '06']), $result->getParties()[1]);
+        $this->assertEquals(new Partie('MARIANNI-SAMSON Emmanuel', 'SÉJOURNÉ Jérémy', 2, 1, ['04', '05', '06']), $result->getParties()[1]);
         $this->assertEquals(new Partie('GARBANI Fabrice', 'BERNET Loris', 2, 1, ['01', '01', '04']), $result->getParties()[2]);
         $this->assertEquals(new Partie('GARBANI - LECOURT Dimitri', 'HARDY Mael', 1, 2, ['-08', '-05', '11', '11', '-10']), $result->getParties()[3]);
-        $this->assertEquals(new Partie('AMOR QUOINTEAU Erwan', 'DESROCHES Damien', 2, 1, ['06', '07', '02']), $result->getParties()[4]);
+        $this->assertEquals(new Partie('AMOR QUOINTEAU Erwan', 'SÉJOURNÉ Jérémy', 2, 1, ['06', '07', '02']), $result->getParties()[4]);
         $this->assertEquals(new Partie('MARIANNI-SAMSON Emmanuel', 'MACCHIETTI Jean', 2, 1, ['10', '04', '06']), $result->getParties()[5]);
         $this->assertEquals(new Partie('GARBANI - LECOURT Dimitri', 'BERNET Loris', 1, 2, ['-05', '-07', '-11']), $result->getParties()[6]);
         $this->assertEquals(new Partie('GARBANI Fabrice', 'HARDY Mael', 2, 1, ['04', '07', '06']), $result->getParties()[7]);
-        $this->assertEquals(new Partie('AMOR QUOINTEAU Erwan et MARIANNI-SAMSON Emmanuel', 'MACCHIETTI Jean et DESROCHES Damien', 2, 1, ['06', '05', '06']), $result->getParties()[8]);
+        $this->assertEquals(new Partie('AMOR QUOINTEAU Erwan et MARIANNI-SAMSON Emmanuel', 'MACCHIETTI Jean et SÉJOURNÉ Jérémy', 2, 1, ['06', '05', '06']), $result->getParties()[8]);
         $this->assertEquals(new Partie('GARBANI Fabrice et GARBANI - LECOURT Dimitri', 'BERNET Loris et HARDY Mael', 2, 1, ['-09', '04', '07', '10']), $result->getParties()[9]);
         $this->assertEquals(new Partie('AMOR QUOINTEAU Erwan', 'BERNET Loris', 2, 1, ['08', '10', '08']), $result->getParties()[10]);
         $this->assertEquals(new Partie('GARBANI Fabrice', 'MACCHIETTI Jean', 2, 1, ['01', '07', '02']), $result->getParties()[11]);
-        $this->assertEquals(new Partie('GARBANI - LECOURT Dimitri', 'DESROCHES Damien', 1, 2, ['-08', '-08', '-10']), $result->getParties()[12]);
+        $this->assertEquals(new Partie('GARBANI - LECOURT Dimitri', 'SÉJOURNÉ Jérémy', 1, 2, ['-08', '-08', '-10']), $result->getParties()[12]);
         $this->assertEquals(new Partie('MARIANNI-SAMSON Emmanuel', 'HARDY Mael', 2, 1, ['06', '05', '11']), $result->getParties()[13]);
     }
 }
