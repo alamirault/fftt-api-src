@@ -192,7 +192,9 @@ final class RencontreDetailsFactory
     {
         $parties = [];
         foreach ($data as $partieData) {
-            $setDetails = explode(' ', trim($partieData['detail']));
+            $setsDetails = array_map(function ($setDetail) {
+                return intval($setDetail);
+            }, explode(' ', trim($partieData['detail'])));
 
             /** @var string $adversaireA */
             $adversaireA = is_array($partieData['ja']) ? 'Absent Absent' : $this->nomPrenomExtractor->removeSeparatorsDuplication($partieData['ja']);
@@ -205,7 +207,7 @@ final class RencontreDetailsFactory
                 $adversaireB,
                 '-' === $partieData['scorea'] ? 0 : (int) $partieData['scorea'],
                 '-' === $partieData['scoreb'] ? 0 : (int) $partieData['scoreb'],
-                $setDetails
+                $setsDetails
             );
         }
 
