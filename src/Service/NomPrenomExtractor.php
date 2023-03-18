@@ -8,7 +8,7 @@ final class NomPrenomExtractor implements NomPrenomExtractorInterface
     {
         $raw = $this->removeSeparatorsDuplication($raw);
         // On extrait le nom et le prénom
-        $return = preg_match("/^(?<nom>[A-ZÀ-Ý]+(?:(?:[\s'\-])*[A-ZÀ-Ý]+)*)\s(?<prenom>[A-ZÀ-Ý][a-zà-ÿ]*(?:(?:[\s'\-])*[A-ZÀ-Ý][a-zà-ÿ]*)*)$/", $raw, $result);
+        $return = preg_match("/^(?<nom>[A-ZÀ-Ý]+(?:(?:[\s'\-])*[A-ZÀ-Ý]+)*)\s(?<prenom>[A-ZÀ-Ý][a-zà-ÿ]*(?:(?:[\s'\-])*[A-ZÀ-Ý]?[a-zà-ÿ]*)*)$/", $raw, $result);
 
         return 1 !== $return ? ['', ''] :
         [

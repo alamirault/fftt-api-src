@@ -131,5 +131,11 @@ final class NomPrenomExtractorTest extends TestCase
             'SÉJOURNÉ',
             'Jérémy',
         ];
+
+        yield [
+            'EVEN Gwec hen',
+            'EVEN',
+            'Gwec hen',
+        ];
     }
 }
