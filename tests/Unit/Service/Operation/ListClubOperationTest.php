@@ -34,7 +34,7 @@ final class ListClubOperationTest extends TestCase
 
         $operation = new ListClubOperation($FFTTClient, new ClubFactory(), new ArrayWrapper());
 
-        $result = $operation->listClubsByDepartement(37);
+        $result = $operation->listClubsByDepartement(1);
 
         $this->assertCount(39, $result);
 

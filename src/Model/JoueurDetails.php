@@ -17,7 +17,7 @@ final class JoueurDetails
         private readonly string $numClub,
         private readonly string $nomClub,
         private readonly bool $isHomme,
-        private readonly string $categorie,
+        private readonly ?string $categorie,
         // TODO: Créer une Enum pour convertir "categorie" en libellés plus explicites
         private readonly ?float $pointDebutSaison,
         private readonly float $pointsLicence,
@@ -25,7 +25,7 @@ final class JoueurDetails
         private readonly ?float $pointsMensuelAnciens,
         private readonly bool $isClasseNational,
         private readonly ?int $classementNational,
-        private readonly NationaliteEnum $nationalite,
+        private readonly ?NationaliteEnum $nationalite,
         private readonly ?\DateTime $dateMutation,
         private readonly ?string $diplomeArbitre,
         private readonly ?string $diplomeJugeArbitre,
@@ -57,7 +57,7 @@ final class JoueurDetails
         return $this->classementNational;
     }
 
-    public function getNationalite(): NationaliteEnum
+    public function getNationalite(): ?NationaliteEnum
     {
         return $this->nationalite;
     }
@@ -112,7 +112,7 @@ final class JoueurDetails
         return $this->isHomme;
     }
 
-    public function getCategorie(): string
+    public function getCategorie(): ?string
     {
         return $this->categorie;
     }
