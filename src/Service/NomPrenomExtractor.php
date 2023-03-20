@@ -22,6 +22,6 @@ final class NomPrenomExtractor implements NomPrenomExtractorInterface
      */
     public function removeSeparatorsDuplication(string $raw): string
     {
-        return preg_replace(['/\s+/', '/-+/'], [' ', '-'], $raw) ?? '';
+        return preg_replace(['/\s+/', '/(?:\s*\-\s*)+|-+/'], [' ', '-'], $raw) ?? '';
     }
 }
