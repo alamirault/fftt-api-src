@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<liste>
+    <joueur>
+        <licence>9521866</licence>
+        <nom> HERNANDEZ</nom>
+        <prenom>Francois</prenom>
+        <club>05650412</club>
+        <nclub>CERGY PONTOISE</nclub>
+        <sexe>M</sexe>
+        <echelon></echelon>
+        <place/>
+        <points>816</points>
+    </joueur>
+    <joueur>
+        <licence>9521899</licence>
+        <nom> DE L'EPREVIER PAVRON  - SEC</nom>
+        <prenom>Domìtïlle </prenom>
+        <club>05650412</club>
+        <nclub>CERGY PONTOISE</nclub>
+        <sexe>F</sexe>
+        <echelon></echelon>
+        <place/>
+        <points>812</points>
+    </joueur>
+    <joueur>
+        <licence>9521877</licence>
+        <nom>NDJOM BASSANAGA</nom>
+        <prenom>Moïse Çéliñó</prenom>
+        <club>05650412</club>
+        <nclub>CERGY PONTOISE</nclub>
+        <sexe>M</sexe>
+        <echelon></echelon>
+        <place/>
+        <points>1216</points>
+    </joueur>
+    <joueur>
+        <licence>95218367</licence>
+        <nom>ÂBBÄS</nom>
+        <prenom>Ãbdel--Jælil</prenom>
+        <club>05650412</club>
+        <nclub>CERGY PONTOISE</nclub>
+        <sexe>M</sexe>
+        <echelon>N</echelon>
+        <place>924</place>
+        <points>1456</points>
+    </joueur>
+    <joueur>
+        <licence>9521870</licence>
+        <nom>GARBANI  - LECOURT NEVEU</nom>
+        <prenom>Dimitri  -- Sébastien</prenom>
+        <club>05650412</club>
+        <nclub>CERGY PONTOISE</nclub>
+        <sexe>M</sexe>
+        <echelon></echelon>
+        <place/>
+        <points>1456</points>
+    </joueur>
+    <joueur>
+        <licence>9521876</licence>
+        <nom>AMOR   QUOINTEAU</nom>
+        <prenom>Erwan</prenom>
+        <club>05650412</club>
+        <nclub>CERGY PONTOISE</nclub>
+        <sexe>M</sexe>
+        <echelon></echelon>
+        <place/>
+        <points>756</points>
+    </joueur>
+    <joueur>
+        <licence>9521888</licence>
+        <nom>    MOREAU</nom>
+        <prenom>  Véronique  </prenom>
+        <club>05650412</club>
+        <nclub>CERGY PONTOISE</nclub>
+        <sexe>F</sexe>
+        <echelon>N</echelon>
+        <place>54</place>
+        <points>1956</points>
+    </joueur>
+</liste>

@@ -5,14 +5,14 @@ namespace Alamirault\FFTTApi\Model\Rencontre;
 final class Partie
 {
     /**
-     * @param array<string> $setDetails
+     * @param array<int> $setsDetails
      */
     public function __construct(
         private readonly string $adversaireA,
         private readonly string $adversaireB,
         private readonly int $scoreA,
         private readonly int $scoreB,
-        private readonly array $setDetails,
+        private readonly array $setsDetails,
     ) {}
 
     public function getAdversaireA(): string
@@ -36,10 +36,10 @@ final class Partie
     }
 
     /**
-     * @return array<string>
+     * @return array<int>
      */
-    public function getSetDetails(): array
+    public function getSetsDetails(): array
     {
-        return $this->setDetails;
+        return $this->setsDetails;
     }
 }
