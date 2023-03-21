@@ -52,7 +52,7 @@ final class RetrieveJoueurDetailsOperationTest extends TestCase
         $this->assertSame('11340010', $joueurDetails->getNumClub());
         $this->assertSame('MONTPELLIER TT', $joueurDetails->getNomClub());
         $this->assertTrue($joueurDetails->isHomme());
-        $this->assertSame(TypelicenceEnum::Traditionnelle, $joueurDetails->getTypeLicence());
+        $this->assertSame(TypelicenceEnum::Competition, $joueurDetails->getTypeLicence());
         $this->assertSame('01/08/2022', $joueurDetails->getDateValidation()?->format('d/m/Y'));
         $this->assertTrue($joueurDetails->isClasseNational());
         $this->assertSame('S', $joueurDetails->getCategorie());
@@ -61,7 +61,7 @@ final class RetrieveJoueurDetailsOperationTest extends TestCase
         $this->assertSame(3508.0, $joueurDetails->getPointsMensuelAnciens());
         $this->assertSame(3453.0, $joueurDetails->getPointDebutSaison());
         $this->assertSame(3508.0, $joueurDetails->getPointsLicence());
-        $this->assertSame(NationaliteEnum::Française, $joueurDetails->getNationalite());
+        $this->assertSame(NationaliteEnum::Etrangère, $joueurDetails->getNationalite());
         $this->assertSame('21/02/2022', $joueurDetails->getDateMutation()?->format('d/m/Y'));
         $this->assertNull($joueurDetails->getDiplomeArbitre());
         $this->assertNull($joueurDetails->getDiplomeJugeArbitre());
@@ -99,7 +99,7 @@ final class RetrieveJoueurDetailsOperationTest extends TestCase
         $this->assertSame('08950978', $joueurDetails->getNumClub());
         $this->assertSame('EAUBONNE CSM TT', $joueurDetails->getNomClub());
         $this->assertTrue($joueurDetails->isHomme());
-        $this->assertSame(TypelicenceEnum::Traditionnelle, $joueurDetails->getTypeLicence());
+        $this->assertSame(TypelicenceEnum::Competition, $joueurDetails->getTypeLicence());
         $this->assertSame('18/09/2022', $joueurDetails->getDateValidation()?->format('d/m/Y'));
         $this->assertFalse($joueurDetails->isClasseNational());
         $this->assertSame('V1', $joueurDetails->getCategorie());
@@ -108,7 +108,7 @@ final class RetrieveJoueurDetailsOperationTest extends TestCase
         $this->assertSame(775.25, $joueurDetails->getPointsMensuelAnciens());
         $this->assertSame(710.0, $joueurDetails->getPointDebutSaison());
         $this->assertSame(807.0, $joueurDetails->getPointsLicence());
-        $this->assertSame(NationaliteEnum::Française, $joueurDetails->getNationalite());
+        $this->assertSame(NationaliteEnum::Européenne, $joueurDetails->getNationalite());
         $this->assertSame('01/07/2022', $joueurDetails->getDateMutation()?->format('d/m/Y'));
         $this->assertNull($joueurDetails->getDiplomeArbitre());
         $this->assertNull($joueurDetails->getDiplomeJugeArbitre());
@@ -266,7 +266,6 @@ final class RetrieveJoueurDetailsOperationTest extends TestCase
 
         /** @var JoueurDetails $joueurDetails */
         $joueurDetails = $listeJoueurDetails[33];
-
         $this->assertSame(1342005, $joueurDetails->getIdLicence());
         $this->assertSame('9539821', $joueurDetails->getLicence());
         $this->assertSame('SERVANT', $joueurDetails->getNom());
@@ -274,7 +273,7 @@ final class RetrieveJoueurDetailsOperationTest extends TestCase
         $this->assertSame('08951331', $joueurDetails->getNumClub());
         $this->assertSame('LA FRETTE ESFTT', $joueurDetails->getNomClub());
         $this->assertFalse($joueurDetails->isHomme());
-        $this->assertSame(TypeLicenceEnum::Promotionnelle, $joueurDetails->getTypeLicence());
+        $this->assertSame(TypeLicenceEnum::Loisir, $joueurDetails->getTypeLicence());
         $this->assertSame('15/09/2022', $joueurDetails->getDateValidation()?->format('d/m/Y'));
         $this->assertFalse($joueurDetails->isClasseNational());
         $this->assertSame('M1', $joueurDetails->getCategorie());
@@ -284,6 +283,54 @@ final class RetrieveJoueurDetailsOperationTest extends TestCase
         $this->assertSame(500.0, $joueurDetails->getPointDebutSaison());
         $this->assertSame(500.0, $joueurDetails->getPointsLicence());
         $this->assertSame(NationaliteEnum::Française, $joueurDetails->getNationalite());
+        $this->assertNull($joueurDetails->getDateMutation());
+        $this->assertNull($joueurDetails->getDiplomeArbitre());
+        $this->assertNull($joueurDetails->getDiplomeJugeArbitre());
+        $this->assertNull($joueurDetails->getDiplomeTechnique());
+
+        /** @var JoueurDetails $joueurDetails */
+        $joueurDetails = $listeJoueurDetails[0];
+        $this->assertSame(78392, $joueurDetails->getIdLicence());
+        $this->assertSame('9511459', $joueurDetails->getLicence());
+        $this->assertSame('DOUTRIAUX', $joueurDetails->getNom());
+        $this->assertSame('Noel', $joueurDetails->getPrenom());
+        $this->assertSame('08951331', $joueurDetails->getNumClub());
+        $this->assertSame('LA FRETTE ESFTT', $joueurDetails->getNomClub());
+        $this->assertFalse(!$joueurDetails->isHomme());
+        $this->assertSame(TypeLicenceEnum::Decouverte, $joueurDetails->getTypeLicence());
+        $this->assertSame('12/07/2022', $joueurDetails->getDateValidation()?->format('d/m/Y'));
+        $this->assertFalse($joueurDetails->isClasseNational());
+        $this->assertSame(null, $joueurDetails->getCategorie());
+        $this->assertNull($joueurDetails->getClassementNational());
+        $this->assertSame(970.0, $joueurDetails->getPointsMensuel());
+        $this->assertSame(965.5, $joueurDetails->getPointsMensuelAnciens());
+        $this->assertSame(975.0, $joueurDetails->getPointDebutSaison());
+        $this->assertSame(970.0, $joueurDetails->getPointsLicence());
+        $this->assertSame(null, $joueurDetails->getNationalite());
+        $this->assertNull($joueurDetails->getDateMutation());
+        $this->assertNull($joueurDetails->getDiplomeArbitre());
+        $this->assertNull($joueurDetails->getDiplomeJugeArbitre());
+        $this->assertNull($joueurDetails->getDiplomeTechnique());
+
+        /** @var JoueurDetails $joueurDetails */
+        $joueurDetails = $listeJoueurDetails[1];
+        $this->assertSame(88226, $joueurDetails->getIdLicence());
+        $this->assertSame('959179', $joueurDetails->getLicence());
+        $this->assertSame('FANZUTTI', $joueurDetails->getNom());
+        $this->assertSame('Patrick', $joueurDetails->getPrenom());
+        $this->assertSame('08951331', $joueurDetails->getNumClub());
+        $this->assertSame('LA FRETTE ESFTT', $joueurDetails->getNomClub());
+        $this->assertFalse(!$joueurDetails->isHomme());
+        $this->assertSame(TypeLicenceEnum::Evenementiel, $joueurDetails->getTypeLicence());
+        $this->assertSame('06/07/2022', $joueurDetails->getDateValidation()?->format('d/m/Y'));
+        $this->assertFalse($joueurDetails->isClasseNational());
+        $this->assertSame('V3', $joueurDetails->getCategorie());
+        $this->assertNull($joueurDetails->getClassementNational());
+        $this->assertSame(577.0, $joueurDetails->getPointsMensuel());
+        $this->assertSame(570.0, $joueurDetails->getPointsMensuelAnciens());
+        $this->assertSame(564.0, $joueurDetails->getPointDebutSaison());
+        $this->assertSame(577.0, $joueurDetails->getPointsLicence());
+        $this->assertSame(null, $joueurDetails->getNationalite());
         $this->assertNull($joueurDetails->getDateMutation());
         $this->assertNull($joueurDetails->getDiplomeArbitre());
         $this->assertNull($joueurDetails->getDiplomeJugeArbitre());
@@ -317,5 +364,30 @@ final class RetrieveJoueurDetailsOperationTest extends TestCase
             $this->assertTrue(str_contains($e->getMessage(), 'Status code 400 on URL "http://www.fftt.com/mobile/pxml/xml_licence_b.php'));
             $this->assertSame(InvalidRequestException::class, $e::class);
         }
+    }
+
+    /**
+     * Cas d'un club sans joueurs.
+     *
+     * @covers ::retrieveJoueurDetails
+     */
+    public function testRetrieveJoueurDetailsClubSansJoueurs(): void
+    {
+        /** @var string $responseContent */
+        $responseContent = file_get_contents(__DIR__.'/../fixtures/empty_result.xml');
+        $mock = new MockHandlerStub([
+            new Response(200, [
+                'content-type' => ['text/html; charset=UTF-8'],
+            ], $responseContent),
+        ]);
+
+        $handlerStack = HandlerStack::create($mock);
+        $client = new Client(['handler' => $handlerStack]);
+        $FFTTClient = new FFTTClient($client, new UriGenerator('foo', 'bar'));
+
+        $operation = new RetrieveJoueurDetailsOperation($FFTTClient);
+
+        $listeVideJoueurs = $operation->retrieveJoueurDetails('', '07021011');
+        $this->assertSame([], $listeVideJoueurs);
     }
 }

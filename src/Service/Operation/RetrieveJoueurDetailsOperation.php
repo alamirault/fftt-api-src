@@ -48,6 +48,8 @@ final class RetrieveJoueurDetailsOperation
 
         if (array_key_exists('licence', $data)) {
             $data = $data['licence'];
+        } elseif (!count($data) && !$licenceId) { // Si le club existe mais n'a pas de membres
+            return [];
         } else {
             throw new JoueurNotFoundException($licenceId, $clubId);
         }
@@ -79,14 +81,14 @@ final class RetrieveJoueurDetailsOperation
             $joueurDetails['numclub'],
             $joueurDetails['nomclub'],
             self::TYPE_HOMME === $joueurDetails['sexe'],
-            $joueurDetails['cat'],
+            $joueurDetails['cat'] ?: null,
             $joueurDetails['initm'] ? (float) $joueurDetails['initm'] : null,
             (float) $joueurDetails['point'],
             $joueurDetails['pointm'] ? (float) $joueurDetails['pointm'] : null,
             $joueurDetails['apointm'] ? (float) $joueurDetails['apointm'] : null,
             self::TYPE_CLASSE_NATIONAL === $joueurDetails['echelon'],
             $joueurDetails['place'] ? (int) $joueurDetails['place'] : null,
-            NationaliteEnum::from($joueurDetails['natio']),
+            $joueurDetails['natio'] ? NationaliteEnum::from($joueurDetails['natio']) : null,
             $joueurDetails['mutation'] && \DateTime::createFromFormat('!d/m/Y', $joueurDetails['mutation']) ? \DateTime::createFromFormat('!d/m/Y', $joueurDetails['mutation']) : null,
             $joueurDetails['arb'] ?: null,
             $joueurDetails['ja'] ?: null,
