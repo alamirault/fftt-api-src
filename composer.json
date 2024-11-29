@@ -36,8 +36,8 @@
         "rector/rector": "^0.14.2"
     },
     "scripts": {
-        "cs": "./bin/php-cs-fixer fix --verbose --diff --using-cache=no --dry-run",
-        "cs-fix": "./bin/php-cs-fixer fix --verbose --diff --using-cache=no",
+        "cs": "./bin/php-cs-fixer fix --verbose --diff --using-cache=no --dry-run --allow-risky=yes",
+        "cs-fix": "./bin/php-cs-fixer fix --verbose --diff --using-cache=no --allow-risky=yes",
         "phpstan": "./bin/phpstan analyse",
         "phpunit": "./bin/phpunit",
         "coverage": "./bin/phpunit --coverage-html coverage",

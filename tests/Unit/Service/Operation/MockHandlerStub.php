@@ -32,9 +32,9 @@ final class MockHandlerStub implements \Countable
      * @return HandlerStack
      */
     public static function createWithMiddleware(
-        array $queue = null,
-        callable $onFulfilled = null,
-        callable $onRejected = null,
+        ?array $queue = null,
+        ?callable $onFulfilled = null,
+        ?callable $onRejected = null,
     ) {
         return HandlerStack::create(new self($queue, $onFulfilled, $onRejected));
     }
@@ -44,14 +44,13 @@ final class MockHandlerStub implements \Countable
      * {@see Psr7\Http\Message\ResponseInterface} objects, Exceptions,
      * callables, or Promises.
      *
-     * @param array    $queue
      * @param callable $onFulfilled callback to invoke when the return value is fulfilled
      * @param callable $onRejected  callback to invoke when the return value is rejected
      */
     public function __construct(
-        array $queue = null,
-        callable $onFulfilled = null,
-        callable $onRejected = null,
+        ?array $queue = null,
+        ?callable $onFulfilled = null,
+        ?callable $onRejected = null,
     ) {
         $this->onFulfilled = $onFulfilled;
         $this->onRejected = $onRejected;
@@ -182,8 +181,8 @@ final class MockHandlerStub implements \Countable
     private function invokeStats(
         RequestInterface $request,
         array $options,
-        ResponseInterface $response = null,
-                          $reason = null,
+        ?ResponseInterface $response = null,
+        $reason = null,
     ) {
         if (isset($options['on_stats'])) {
             $transferTime = isset($options['transfer_time']) ? $options['transfer_time'] : 0;

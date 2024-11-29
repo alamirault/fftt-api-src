@@ -8,13 +8,13 @@ This project is the source code of [alamirault/fftt-api](https://github.com/alam
 Run docker environment
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 Go inside container 
 
 ```bash
-docker exec -it use-fftt-api-refacto_php_1 bash
+docker exec -it fftt-api-src-php-1 bash
 ```
 
 Install dependencies

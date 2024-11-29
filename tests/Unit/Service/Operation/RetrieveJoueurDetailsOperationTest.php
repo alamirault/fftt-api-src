@@ -52,7 +52,7 @@ final class RetrieveJoueurDetailsOperationTest extends TestCase
         $this->assertSame('11340010', $joueurDetails->getNumClub());
         $this->assertSame('MONTPELLIER TT', $joueurDetails->getNomClub());
         $this->assertTrue($joueurDetails->isHomme());
-        $this->assertSame(TypelicenceEnum::Competition, $joueurDetails->getTypeLicence());
+        $this->assertSame(TypeLicenceEnum::Competition, $joueurDetails->getTypeLicence());
         $this->assertSame('01/08/2022', $joueurDetails->getDateValidation()?->format('d/m/Y'));
         $this->assertTrue($joueurDetails->isClasseNational());
         $this->assertSame('S', $joueurDetails->getCategorie());
@@ -99,7 +99,7 @@ final class RetrieveJoueurDetailsOperationTest extends TestCase
         $this->assertSame('08950978', $joueurDetails->getNumClub());
         $this->assertSame('EAUBONNE CSM TT', $joueurDetails->getNomClub());
         $this->assertTrue($joueurDetails->isHomme());
-        $this->assertSame(TypelicenceEnum::Competition, $joueurDetails->getTypeLicence());
+        $this->assertSame(TypeLicenceEnum::Competition, $joueurDetails->getTypeLicence());
         $this->assertSame('18/09/2022', $joueurDetails->getDateValidation()?->format('d/m/Y'));
         $this->assertFalse($joueurDetails->isClasseNational());
         $this->assertSame('V1', $joueurDetails->getCategorie());
@@ -361,7 +361,7 @@ final class RetrieveJoueurDetailsOperationTest extends TestCase
         try {
             $operation->retrieveJoueurDetails('', '');
         } catch (\Exception $e) {
-            $this->assertTrue(str_contains($e->getMessage(), 'Status code 400 on URL "http://www.fftt.com/mobile/pxml/xml_licence_b.php'));
+            $this->assertTrue(str_contains($e->getMessage(), 'Status code 400 on URL "https://www.fftt.com/mobile/pxml/xml_licence_b.php'));
             $this->assertSame(InvalidRequestException::class, $e::class);
         }
     }

@@ -185,7 +185,7 @@ final class FFTTApi
     /**
      * @return array<Equipe>
      */
-    public function listEquipesByClub(string $clubId, string $type = null): array
+    public function listEquipesByClub(string $clubId, ?string $type = null): array
     {
         return $this->listEquipeOperation->listEquipesByClub($clubId, $type);
     }
