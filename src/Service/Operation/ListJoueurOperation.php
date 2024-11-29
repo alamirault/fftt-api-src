@@ -22,8 +22,8 @@ final class ListJoueurOperation
     {
         try {
             $arrayJoueurs = $this->client->get('xml_liste_joueur_o', [
-                    'club' => $clubId,
-                ]
+                'club' => $clubId,
+            ]
             );
         } catch (InvalidResponseException) {
             throw new ClubNotFoundException($clubId);
@@ -52,9 +52,9 @@ final class ListJoueurOperation
     {
         /** @var array<mixed> $arrayJoueurs */
         $arrayJoueurs = $this->client->get('xml_liste_joueur', [
-                'nom' => addslashes(Accentuation::remove($nom)),
-                'prenom' => addslashes(Accentuation::remove($prenom)),
-            ]
+            'nom' => addslashes(Accentuation::remove($nom)),
+            'prenom' => addslashes(Accentuation::remove($prenom)),
+        ]
         )['joueur'];
 
         $arrayJoueurs = $this->arrayWrapper->wrapArrayIfUnique($arrayJoueurs);

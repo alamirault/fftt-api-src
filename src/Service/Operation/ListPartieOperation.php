@@ -26,8 +26,8 @@ final class ListPartieOperation
     {
         /** @var array<mixed> $parties */
         $parties = $this->client->get('xml_partie_mysql', [
-                'licence' => $licenceId,
-            ])['partie'] ?? [];
+            'licence' => $licenceId,
+        ])['partie'] ?? [];
         $parties = $this->arrayWrapper->wrapArrayIfUnique($parties);
 
         $res = [];
@@ -65,8 +65,8 @@ final class ListPartieOperation
 
         /** @var array<array{victoire: string, forfait: string, nom: string, date: string, epreuve: string, idpartie: string, coefchamp: string, classement: string}> $allParties */
         $allParties = $this->client->get('xml_partie', [
-                'numlic' => $joueurId,
-            ])['partie'] ?? [];
+            'numlic' => $joueurId,
+        ])['partie'] ?? [];
 
         $result = [];
         foreach ($allParties as $partie) {
@@ -76,8 +76,8 @@ final class ListPartieOperation
                     return $partie['date'] === $validatedPartie->getDate()->format('d/m/Y')
                         and $this->removeAccentLowerCaseRegex($nom) === $this->removeAccentLowerCaseRegex($validatedPartie->getAdversaireNom())
                         and (
-                            preg_match('/'.$this->removeAccentLowerCaseRegex($prenom).'.*/', $this->removeAccentLowerCaseRegex($validatedPartie->getAdversairePrenom())) or
-                            str_contains($this->removeAccentLowerCaseRegex($prenom), $this->removeAccentLowerCaseRegex($validatedPartie->getAdversairePrenom()))
+                            preg_match('/'.$this->removeAccentLowerCaseRegex($prenom).'.*/', $this->removeAccentLowerCaseRegex($validatedPartie->getAdversairePrenom()))
+                            or str_contains($this->removeAccentLowerCaseRegex($prenom), $this->removeAccentLowerCaseRegex($validatedPartie->getAdversairePrenom()))
                         );
                 }));
 

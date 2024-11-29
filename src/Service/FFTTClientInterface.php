@@ -17,5 +17,5 @@ interface FFTTClientInterface
      * @throws InvalidResponseException
      * @throws InternalServerErrorException
      */
-    public function get(string $path, array $params = [], string $queryParameter = null): array;
+    public function get(string $path, array $params = [], ?string $queryParameter = null): array;
 }

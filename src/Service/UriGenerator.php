@@ -4,14 +4,14 @@ namespace Alamirault\FFTTApi\Service;
 
 final class UriGenerator implements UriGeneratorInterface
 {
-    private const FFTT_URL = 'http://www.fftt.com/mobile/pxml/';
+    private const FFTT_URL = 'https://www.fftt.com/mobile/pxml/';
 
     public function __construct(
         private readonly string $id,
         private readonly string $password,
     ) {}
 
-    public function generate(string $path, array $parameters = [], string $queryParameter = null): string
+    public function generate(string $path, array $parameters = [], ?string $queryParameter = null): string
     {
         $time = round(microtime(true) * 1000);
         $hashedKey = hash_hmac('sha1', (string) $time, md5($this->password));

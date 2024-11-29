@@ -1,6 +1,5 @@
 <?php
 
-use PhpCsFixer\Config;
 use PhpCsFixerCustomFixers\Fixer\CommentSurroundedBySpacesFixer;
 use PhpCsFixerCustomFixers\Fixer\ConstructorEmptyBracesFixer;
 use PhpCsFixerCustomFixers\Fixer\DeclareAfterOpeningTagFixer;
@@ -11,7 +10,6 @@ use PhpCsFixerCustomFixers\Fixer\PhpdocNoSuperfluousParamFixer;
 use PhpCsFixerCustomFixers\Fixer\PhpdocParamOrderFixer;
 use PhpCsFixerCustomFixers\Fixer\PhpdocTypesTrimFixer;
 use PhpCsFixerCustomFixers\Fixer\PromotedConstructorPropertyFixer;
-use PhpCsFixerCustomFixers\Fixer\ReadonlyPromotedPropertiesFixer;
 
 $excludes = [
     'vendor',
@@ -28,32 +26,17 @@ $rules = [
     '@Symfony' => true,
     'phpdoc_to_comment' => false,
     'trailing_comma_in_multiline' => ['elements' => ['arrays', 'parameters']],
+    'phpdoc_array_type' => true,
+    'phpdoc_param_order' => true,
     CommentSurroundedBySpacesFixer::name() => true,
     ConstructorEmptyBracesFixer::name() => true,
     DeclareAfterOpeningTagFixer::name() => true,
     MultilineCommentOpeningClosingAloneFixer::name() => true,
     MultilinePromotedPropertiesFixer::name() => true,
-    MultilinePromotedPropertiesFixer::name() => true,
-    PhpdocArrayStyleFixer::name() => true,
     PhpdocNoSuperfluousParamFixer::name() => true,
-    PhpdocParamOrderFixer::name() => true,
     PhpdocTypesTrimFixer::name() => true,
     PromotedConstructorPropertyFixer::name() => true,
-//    '@PSR2' => true,
-//    'array_syntax' => ['syntax' => 'short'],
-//    'no_useless_else' => true,
-//    'yoda_style' => false,
-//    'function_declaration' => [
-//        'closure_function_spacing' => 'none' //No space before function
-//    ],
-//    'braces' => false, //Disable due to it add space before parenthesis of if or foreach
-//    'concat_space' => [
-//        'spacing' => 'one'
-//    ],
-//    'phpdoc_align' => [
-//        'align' => 'left'
-//    ],
-//    'single_blank_line_at_eof' => false,
+    MultilinePromotedPropertiesFixer::name() => true,
 ];
 
 $config = new PhpCsFixer\Config();

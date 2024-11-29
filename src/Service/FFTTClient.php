@@ -17,7 +17,7 @@ final class FFTTClient implements FFTTClientInterface
         private readonly UriGenerator $uriGenerator,
     ) {}
 
-    public function get(string $path, array $params = [], string $queryParameter = null): array
+    public function get(string $path, array $params = [], ?string $queryParameter = null): array
     {
         $uri = $this->uriGenerator->generate($path, $params, $queryParameter);
         try {

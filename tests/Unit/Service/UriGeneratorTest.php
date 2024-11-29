@@ -22,7 +22,7 @@ final class UriGeneratorTest extends TestCase
         /** @var array<string, string> $uriParts */
         $uriParts = parse_url($uri);
 
-        $this->assertSame('http', $uriParts['scheme']);
+        $this->assertSame('https', $uriParts['scheme']);
         $this->assertSame('www.fftt.com', $uriParts['host']);
         $this->assertSame('/mobile/pxml/baz.php', $uriParts['path']);
 
@@ -50,7 +50,7 @@ final class UriGeneratorTest extends TestCase
         /** @var array<string, string> $uriParts */
         $uriParts = parse_url($uri);
 
-        $this->assertSame('http', $uriParts['scheme']);
+        $this->assertSame('https', $uriParts['scheme']);
         $this->assertSame('www.fftt.com', $uriParts['host']);
         $this->assertSame('/mobile/pxml/baz.php', $uriParts['path']);
 
@@ -80,7 +80,7 @@ final class UriGeneratorTest extends TestCase
         /** @var array<string, string> $uriParts */
         $uriParts = parse_url($uri);
 
-        $this->assertSame('http', $uriParts['scheme']);
+        $this->assertSame('https', $uriParts['scheme']);
         $this->assertSame('www.fftt.com', $uriParts['host']);
         $this->assertSame('/mobile/pxml/baz.php', $uriParts['path']);
 
