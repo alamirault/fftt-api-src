@@ -22,7 +22,7 @@ final class ListJoueurOperation
     {
         try {
             $arrayJoueurs = $this->client->get('xml_liste_joueur_o', [
-                'club' => $clubId,
+                'club' => $clubId, 'valid' => 1, 
             ]
             );
         } catch (InvalidResponseException) {
