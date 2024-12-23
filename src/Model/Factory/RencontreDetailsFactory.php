@@ -2,7 +2,6 @@
 
 namespace Alamirault\FFTTApi\Model\Factory;
 
-use Accentuation\Accentuation;
 use Alamirault\FFTTApi\Model\Rencontre\Joueur;
 use Alamirault\FFTTApi\Model\Rencontre\Partie;
 use Alamirault\FFTTApi\Model\Rencontre\RencontreDetails;
@@ -29,11 +28,14 @@ final class RencontreDetailsFactory
         $joueursA = [];
         $joueursB = [];
         foreach ($array['joueur'] as $joueur) {
-            $joueursA[] = [$joueur['xja'] ?: '', $joueur['xca'] ?: ''];
-            $joueursB[] = [$joueur['xjb'] ?: '', $joueur['xcb'] ?: ''];
+            $joueursA[] = ['nom' => $joueur['xja'] ?: '', 'points' => $joueur['xca'] ?: ''];
+            $joueursB[] = ['nom' => $joueur['xjb'] ?: '', 'points' => $joueur['xcb'] ?: ''];
         }
-        $joueursAFormatted = $this->formatJoueurs($joueursA, $clubEquipeA);
-        $joueursBFormatted = $this->formatJoueurs($joueursB, $clubEquipeB);
+
+        $wholeTeamAForfeit = 0 === count(array_filter($joueursA, function ($joueurA) { return $joueurA['nom'] && $joueurA['points']; }));
+        $wholeTeamBForfeit = 0 === count(array_filter($joueursB, function ($joueurB) { return $joueurB['nom'] && $joueurB['points']; }));
+        $joueursAFormatted = !$wholeTeamAForfeit ? $this->formatJoueurs($joueursA, $clubEquipeA) : [];
+        $joueursBFormatted = !$wholeTeamBForfeit ? $this->formatJoueurs($joueursB, $clubEquipeB) : [];
 
         $parties = $this->getParties($array['partie']);
 
@@ -129,7 +131,7 @@ final class RencontreDetailsFactory
     }
 
     /**
-     * @param array<array{0: string, 1: string}> $data
+     * @param array<array{nom: string, points: string}> $data
      *
      * @return array<string, Joueur>
      */
@@ -139,9 +141,11 @@ final class RencontreDetailsFactory
 
         $joueurs = [];
         foreach ($data as $joueurData) {
-            $nomPrenom = $joueurData[0];
-            [$nom, $prenom] = $this->nomPrenomExtractor->extractNomPrenom($nomPrenom);
-            $joueurs[$this->nomPrenomExtractor->removeSeparatorsDuplication($nomPrenom)] = $this->formatJoueur($prenom, $nom, $joueurData[1], $joueursClub);
+            if ($joueurData['nom'] && $joueurData['points']) {
+                $nomPrenom = $joueurData['nom'];
+                [$nom, $prenom] = $this->nomPrenomExtractor->extractNomPrenom($nomPrenom);
+                $joueurs[$this->nomPrenomExtractor->removeSeparatorsDuplication($nomPrenom)] = $this->formatJoueur($prenom, $nom, $joueurData['points'], $joueursClub);
+            }
         }
 
         return $joueurs;
@@ -157,9 +161,7 @@ final class RencontreDetailsFactory
         }
 
         foreach ($joueursClub as $joueurClub) {
-            $nomJoueurClub = $this->nomPrenomExtractor->removeSeparatorsDuplication($joueurClub->getNom());
-            $prenomJoueurClub = $this->nomPrenomExtractor->removeSeparatorsDuplication($joueurClub->getPrenom());
-            if ($nomJoueurClub === Accentuation::remove($nom) && $prenomJoueurClub === $prenom) {
+            if ($joueurClub->getNom() === $nom && $joueurClub->getPrenom() === $prenom) {
                 $return = preg_match('/^(N°[0-9]*- ){0,1}(?<sexe>[A-Z]{1}) (?<points>[0-9]+)pts$/', $points, $result);
 
                 if (false === $return) {
@@ -170,8 +172,8 @@ final class RencontreDetailsFactory
                 $playerPoints = $result['points'];
 
                 return new Joueur(
-                    $nomJoueurClub,
-                    $prenomJoueurClub,
+                    $joueurClub->getNom(),
+                    $joueurClub->getPrenom(),
                     $joueurClub->getLicence(),
                     (int) $playerPoints,
                     $sexe
@@ -191,20 +193,22 @@ final class RencontreDetailsFactory
     {
         $parties = [];
         foreach ($data as $partieData) {
-            $setDetails = explode(' ', $partieData['detail']);
+            $setsDetails = array_map(function ($setDetail) {
+                return intval($setDetail);
+            }, explode(' ', trim($partieData['detail'])));
 
-            /** @var string $adverssaireA */
-            $adverssaireA = is_array($partieData['ja']) ? 'Absent Absent' : $this->nomPrenomExtractor->removeSeparatorsDuplication($partieData['ja']);
+            /** @var string $adversaireA */
+            $adversaireA = is_array($partieData['ja']) ? 'Absent Absent' : $this->nomPrenomExtractor->removeSeparatorsDuplication($partieData['ja']);
 
-            /** @var string $adverssaireB */
-            $adverssaireB = is_array($partieData['jb']) ? 'Absent Absent' : $this->nomPrenomExtractor->removeSeparatorsDuplication($partieData['jb']);
+            /** @var string $adversaireB */
+            $adversaireB = is_array($partieData['jb']) ? 'Absent Absent' : $this->nomPrenomExtractor->removeSeparatorsDuplication($partieData['jb']);
 
             $parties[] = new Partie(
-                $adverssaireA,
-                $adverssaireB,
+                $adversaireA,
+                $adversaireB,
                 '-' === $partieData['scorea'] ? 0 : (int) $partieData['scorea'],
                 '-' === $partieData['scoreb'] ? 0 : (int) $partieData['scoreb'],
-                $setDetails
+                $setsDetails
             );
         }
 

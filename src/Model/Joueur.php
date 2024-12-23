@@ -5,7 +5,9 @@ namespace Alamirault\FFTTApi\Model;
 final class Joueur
 {
     /**
-     * @param string|null $points Points du joueur ou classement si classé dans les 1000 premiers français
+     * @param int|null    $points  Points du joueur ou classement si classé dans les 1000 premiers français
+     * @param string|null $echelon Egal à 'N' si classé dans les 1000 premiers français, sinon null
+     * @param int|null    $place   Classement national si classé dans les 1000 premiers français
      */
     public function __construct(
         private readonly string $licence,
@@ -13,7 +15,9 @@ final class Joueur
         private readonly string $club,
         private readonly string $nom,
         private readonly string $prenom,
-        private readonly ?string $points,
+        private readonly ?int $points,
+        private readonly ?string $echelon = null,
+        private readonly ?int $place = null,
     ) {}
 
     public function getLicence(): string
@@ -41,8 +45,18 @@ final class Joueur
         return $this->prenom;
     }
 
-    public function getPoints(): ?string
+    public function getPoints(): ?int
     {
         return $this->points;
+    }
+
+    public function getEchelon(): ?string
+    {
+        return $this->echelon;
+    }
+
+    public function getPlace(): ?int
+    {
+        return $this->place;
     }
 }

@@ -50,20 +50,20 @@ final class NomPrenomExtractorTest extends TestCase
 
         yield [
             'GARBANI  - LECOURT Dimitri',
-            'GARBANI - LECOURT',
+            'GARBANI-LECOURT',
             'Dimitri',
         ];
 
         yield [
             'GARBANI  - LECOURT NEVEU Dimitri-Sébastien',
-            'GARBANI - LECOURT NEVEU',
+            'GARBANI-LECOURT NEVEU',
             'Dimitri-Sébastien',
         ];
 
         yield [
             'GARBANI  - LECOURT NEVEU Dimitri - Sébastien',
-            'GARBANI - LECOURT NEVEU',
-            'Dimitri - Sébastien',
+            'GARBANI-LECOURT NEVEU',
+            'Dimitri-Sébastien',
         ];
 
         yield [
@@ -86,7 +86,7 @@ final class NomPrenomExtractorTest extends TestCase
 
         yield [
             'ÆYAO --  ÆYAOÈ Attien Henri',
-            'ÆYAO - ÆYAOÈ',
+            'ÆYAO-ÆYAOÈ',
             'Attien Henri',
         ];
 
@@ -122,8 +122,20 @@ final class NomPrenomExtractorTest extends TestCase
 
         yield [
             "DE L'EPREVIER PAVRON  - SEC Domitille",
-            "DE L'EPREVIER PAVRON - SEC",
+            "DE L'EPREVIER PAVRON-SEC",
             'Domitille',
+        ];
+
+        yield [
+            'SÉJOURNÉ Jérémy',
+            'SÉJOURNÉ',
+            'Jérémy',
+        ];
+
+        yield [
+            'EVEN Gwec hen',
+            'EVEN',
+            'Gwec hen',
         ];
     }
 }
