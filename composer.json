@@ -25,7 +25,8 @@
         "ext-json": "*",
 
         "guzzlehttp/guzzle": "^6.3",
-        "reisraff/accentuation": "^2.0"
+        "reisraff/accentuation": "^2.0",
+        "symfony/http-foundation": "6.4.26"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.11",
