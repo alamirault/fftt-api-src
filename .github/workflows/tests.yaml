@@ -10,29 +10,50 @@ env:
   COMPOSER_ROOT_VERSION: "dev-main"
 
 jobs:
-  tests:
-    strategy:
-      fail-fast: false
-      matrix:
-        actions:
-          -
-            name: 'Phpunit'
-            run: composer phpunit
-
-    name: ${{ matrix.actions.name }}
+  composer-audit:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
-
+    name: Composer audit
     steps:
-      -   uses: actions/checkout@v3
+      - name: "Checkout code"
+        uses: actions/checkout@v4
 
-      # see https://github.com/shivammathur/setup-php
-      -
-        uses: shivammathur/setup-php@v2
+      - name: Install PHP with extensions
+        uses: shivammathur/setup-php@2.26.0
         with:
-          php-version: 8.1
-          coverage: none
+          coverage: "none"
+          php-version: 8.2
+          tools: composer:v2
 
-      -   uses: "ramsey/composer-install@v1"
+      - name: "Composer install"
+        uses: "ramsey/composer-install@2.2.0"
+        with:
+          composer-options: "--prefer-dist"
 
-      -   run: ${{ matrix.actions.run }}
+      - name: Run composer audit
+        uses: alamirault/composer-audit-action@v1
+#  tests:
+#    strategy:
+#      fail-fast: false
+#      matrix:
+#        actions:
+#          -
+#            name: 'Phpunit'
+#            run: composer phpunit
+#
+#    name: ${{ matrix.actions.name }}
+#    runs-on: ubuntu-latest
+#    timeout-minutes: 10
+#
+#    steps:
+#      -   uses: actions/checkout@v3
+#
+#      # see https://github.com/shivammathur/setup-php
+#      -
+#        uses: shivammathur/setup-php@v2
+#        with:
+#          php-version: 8.1
+#          coverage: none
+#
+#      -   uses: "ramsey/composer-install@v1"
+#
+#      -   run: ${{ matrix.actions.run }}
