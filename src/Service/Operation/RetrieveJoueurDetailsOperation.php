@@ -61,9 +61,9 @@ final class RetrieveJoueurDetailsOperation
             }
 
             return $listeJoueurs;
-        } else {
-            return $this->returnJoueurDetails($data);
         }
+
+        return $this->returnJoueurDetails($data);
     }
 
     /**

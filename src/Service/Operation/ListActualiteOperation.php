@@ -25,7 +25,7 @@ final class ListActualiteOperation
         /** @var array{date: string, titre: string, description: string, url: string, photo: string, categorie: string} $dataActualite */
         foreach ($data as $dataActualite) {
             /** @var \DateTime $date */
-            $date = \DateTime::createFromFormat('!Y-m-d', $dataActualite['date']);
+            $date = \DateTime::createFromFormat('!Y-m-d H:i:s', $dataActualite['date']);
             $result[] = new Actualite(
                 $date,
                 $dataActualite['titre'],

@@ -41,7 +41,7 @@ final class ListActualiteOperationTest extends TestCase
 
         $actualite = $result[0];
         $this->assertSame('Ping santé', $actualite->getCategorie());
-        $this->assertSame('2022-10-07T00:00:00+00:00', $actualite->getDate()->format(DATE_ATOM));
+        $this->assertSame('2022-10-07T17:23:58+00:00', $actualite->getDate()->format(DATE_ATOM));
         $this->assertStringContainsString('Du 12 au 16 octobre, les Championnats du Monde Ping Parkinson se dérouleront à Pula en Croatie. Cinq Français seront présents lors de cette compétition.', $actualite->getDescription());
         $this->assertSame('https://www.fftt.com/site/medias/news/news__20221007145001.jpg', $actualite->getPhoto());
         $this->assertSame('Les Championnats du Monde Ping Parkinson débutent mercredi !', $actualite->getTitre());
