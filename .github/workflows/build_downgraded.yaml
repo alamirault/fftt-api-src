@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Downgrade code for production (to PHP 7.1)
         run: |
-          composer install
+          composer install --no-blocking
           bin/rector process
       - name: Build project for production
         run: |
